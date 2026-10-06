@@ -11,6 +11,11 @@
   --grad: linear-gradient(135deg, #1d3fd8 0%, #4f2bd6 55%, #6d28d9 100%); /* hero panels, numbered dots */
   --grad-soft: linear-gradient(135deg, #eef3ff 0%, #f3efff 100%);         /* screenshot stages */
   --on-dark-accent: #8b9dff;   /* highlighted words on dark covers: a light tint of --brand */
+  --on-dark-eyebrow: #a5b8ff; /* eyebrow labels on dark panels: a mid tint of --brand */
+  --on-dark-text: #b8c2e0;     /* body text on --ink: a desaturated light tint of the brand hue */
+  --on-color-text: #d6dcf5;    /* body text on gradient and dark cards */
+  --shadow-rgb: 13,21,48;      /* r,g,b of --ink, used for soft drop shadows */
+  --font-features: "cv11", "ss01"; /* Inter-only stylistic sets; set to normal for other fonts */
   --tint: #eff4ff;             /* very light brand tint: icon chips, soft cards */
   --tint-2: #e0e9ff;
   --paper: #ffffff;
@@ -25,7 +30,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: #fff; color: var(--text); font-family: var(--font), system-ui, sans-serif;
-  -webkit-print-color-adjust: exact; print-color-adjust: exact; font-feature-settings: "cv11", "ss01"; }
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; font-feature-settings: var(--font-features); }
 
 .page { position: relative; overflow: hidden; break-after: page; background: var(--paper); }
 .page:last-child { break-after: auto; }
@@ -34,14 +39,14 @@ html, body { background: #fff; color: var(--text); font-family: var(--font), sys
 .eyebrow { display: flex; align-items: center; gap: 8px; font-size: 9px; font-weight: 700; letter-spacing: .16em;
   text-transform: uppercase; color: var(--brand); }
 .eyebrow::before { content: ""; width: 18px; height: 3px; border-radius: 2px; background: var(--grad); }
-.on-dark .eyebrow { color: #a5b8ff; }
+.on-dark .eyebrow { color: var(--on-dark-eyebrow); }
 h1, h2, h3, h4 { letter-spacing: -0.025em; line-height: 1.05; font-weight: 800; color: var(--text); }
 .on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4 { color: #fff; }
 /* Solid colour, not background-clip:text — clipped gradients leave hairline boxes in some PDF viewers. */
 .grad-text { color: var(--on-dark-accent); }
 .grad-text-dark { color: var(--brand); }
 p { color: var(--text-2); line-height: 1.5; }
-.on-dark p { color: #b8c2e0; }
+.on-dark p { color: var(--on-dark-text); }
 b, strong { color: var(--text); font-weight: 700; }
 .on-dark b, .on-dark strong { color: #fff; }
 
@@ -52,7 +57,7 @@ b, strong { color: var(--text); font-weight: 700; }
 .card-tint { background: var(--tint); border-radius: 14px; }
 .card-dark { background: var(--ink); color: #fff; border-radius: 14px; }
 .card-grad { background: var(--grad); color: #fff; border-radius: 14px; }
-.card-grad p, .card-dark p { color: #d6dcf5; }
+.card-grad p, .card-dark p { color: var(--on-color-text); }
 .card-grad h3, .card-grad h4, .card-dark h3, .card-dark h4, .card-grad b, .card-dark b { color: #fff; }
 
 /* Icons */
@@ -66,7 +71,7 @@ b, strong { color: var(--text); font-weight: 700; }
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 8.5px;
   font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.18); color: #fff; background: rgba(255,255,255,.06); }
 .chip.light { border-color: var(--line); color: var(--brand-ink); background: #fff; letter-spacing: .02em; text-transform: none; font-size: 8.5px; font-weight: 600; }
-.chip .dot { width: 6px; height: 6px; border-radius: 50%; background: #7c9cff; }
+.chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--on-dark-accent); }
 .badge { display: inline-block; padding: 2px 7px; border-radius: 999px; font-size: 7px; font-weight: 800; letter-spacing: .08em;
   text-transform: uppercase; background: var(--ink); color: #fff; }
 .badge.blue { background: var(--brand); }
@@ -77,14 +82,14 @@ b, strong { color: var(--text); font-weight: 700; }
 .btn.white { background: #fff; color: var(--brand-ink); }
 
 /* Screenshot frames */
-.shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 10px 30px -12px rgba(13,21,48,.35); }
+.shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 10px 30px -12px rgba(var(--shadow-rgb),.35); }
 .shot img { display: block; width: 100%; height: auto; }
-.browser { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 16px 40px -16px rgba(13,21,48,.45); }
+.browser { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 16px 40px -16px rgba(var(--shadow-rgb),.45); }
 .browser .bar { height: 18px; display: flex; align-items: center; gap: 4px; padding: 0 8px; background: #f3f4f6; border-bottom: 1px solid var(--line); }
 .browser .bar i { width: 6px; height: 6px; border-radius: 50%; background: #d1d5db; }
 .browser .bar span { margin-left: 8px; font-size: 6.5px; color: var(--muted); background: #fff; border-radius: 4px; padding: 2px 10px; }
 .browser img { display: block; width: 100%; }
-.phone { position: relative; border-radius: 26px; background: #0b0f1a; padding: 6px; box-shadow: 0 20px 40px -14px rgba(13,21,48,.55); }
+.phone { position: relative; border-radius: 26px; background: #0b0f1a; padding: 6px; box-shadow: 0 20px 40px -14px rgba(var(--shadow-rgb),.55); }
 .phone img { display: block; width: 100%; border-radius: 21px; }
 .phone::after { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 30%; height: 9px; border-radius: 9px; background: #0b0f1a; }
 
@@ -99,4 +104,4 @@ b, strong { color: var(--text); font-weight: 700; }
 
 .ticks li { list-style: none; position: relative; padding-left: 16px; color: var(--text-2); line-height: 1.45; }
 .ticks li::before { content: ""; position: absolute; left: 0; top: .5em; width: 7px; height: 7px; border-radius: 50%; background: var(--grad); }
-.on-dark .ticks li, .card-dark .ticks li, .card-grad .ticks li { color: #c9d1ee; }
+.on-dark .ticks li, .card-dark .ticks li, .card-grad .ticks li { color: var(--on-color-text); }

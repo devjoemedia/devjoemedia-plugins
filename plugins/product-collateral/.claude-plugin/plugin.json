@@ -2,7 +2,7 @@
   "name": "product-collateral",
   "displayName": "Product Collateral",
   "description": "Turn any product codebase into print-ready brochures, trifolds and onboarding decks (PDF) using the product's own brand, copy and real screenshots.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": { "name": "Footprintts" },
   "keywords": ["brochure", "trifold", "deck", "marketing", "pdf", "print", "collateral"]
 }

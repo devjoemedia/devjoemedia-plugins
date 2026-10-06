@@ -21,9 +21,9 @@ let previews = flag('--previews', null);
 const [src, outArg] = args;
 if (!src) { console.error('usage: node render.mjs <src.html> [out.pdf] [--previews dir] [--scale 1]'); process.exit(1); }
 
-const name = path.basename(src, '.html');
-const out = outArg || path.join('out', `${name}.pdf`);
-previews = previews || path.join('out', 'preview', name);
+const out = outArg || path.join('out', `${path.basename(src, '.html')}.pdf`);
+// Previews are named after the PDF so several renders of one template don't overwrite each other.
+previews = previews || path.join(path.dirname(out), 'preview', path.basename(out, '.pdf'));
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.mkdirSync(previews, { recursive: true });
 
@@ -43,26 +43,55 @@ const report = await page.evaluate(() => {
   document.querySelectorAll('img').forEach(img => { if (!img.complete || img.naturalWidth === 0) issues.push(`broken image: ${img.getAttribute('src')}`); });
   const fam = getComputedStyle(document.body).fontFamily.split(',')[0].replace(/["']/g, '').trim();
   if (!document.fonts.check(`16px "${fam}"`)) issues.push(`font not loaded: ${fam} (falling back to system font)`);
-  // Content that spills past its page's bottom edge or under the footer gets cut in print.
+  // Layout QA per region: every .page, plus every .panel (trifold columns) or [data-qa-region].
+  // Looks for overflow, empty holes between blocks, and a large unused bottom.
+  const visibleBox = (el, region) => {
+    if (el.closest('.pf, .ft, .foot, .glow')) return null;
+    const r = el.getBoundingClientRect(); const rr = region.getBoundingClientRect();
+    if (!r.height || !r.width || r.height > rr.height * 0.9) return null; // full-height columns are layout, not content
+    const cs = getComputedStyle(el);
+    const painted = (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent') || cs.backgroundImage !== 'none' || parseFloat(cs.borderTopWidth) > 0;
+    const ownText = [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
+    const leaf = ownText || /^(IMG|CANVAS|HR)$/.test(el.tagName) || el.tagName.toLowerCase() === 'svg';
+    if (!painted && !leaf) return null;
+    let top = r.top, bottom = r.bottom, floating = false;
+    for (let a = el; a && a !== region; a = a.parentElement) {
+      const acs = getComputedStyle(a);
+      if (acs.position === 'absolute' || acs.position === 'fixed') floating = true;
+      if (a !== el && acs.overflow !== 'visible') { const ar = a.getBoundingClientRect(); top = Math.max(top, ar.top); bottom = Math.min(bottom, ar.bottom); }
+    }
+    // Absolutely placed phones/screens fill space but are clamped, so decorative overhang isn't "overflow".
+    if (floating) { top = Math.max(top, rr.top); bottom = Math.min(bottom, rr.bottom); }
+    return bottom > top ? [top - rr.top, bottom - rr.top] : null;
+  };
+  const check = (region, label) => {
+    const H = region.getBoundingClientRect().height;
+    const spans = [];
+    region.querySelectorAll('*').forEach(el => { const b = visibleBox(el, region); if (b) spans.push(b); });
+    if (!spans.length) return;
+    spans.sort((p, q) => p[0] - q[0]);
+    const merged = [spans[0].slice()];
+    for (const [t, b] of spans.slice(1)) { const m = merged[merged.length - 1]; if (t <= m[1] + 1) m[1] = Math.max(m[1], b); else merged.push([t, b]); }
+    const lowest = Math.max(...merged.map(m => m[1]));
+    if (lowest > H + 1) issues.push(`${label}: content overflows the bottom by ${Math.round(lowest - H)}px`);
+    const relaxed = region.classList.contains('allow-space') || getComputedStyle(region).justifyContent === 'center';
+    if (relaxed) return;
+    // Slides centre their body on purpose, so they tolerate bigger gaps than print pages and panels.
+    const rb = region.getBoundingClientRect(); const slide = rb.width > rb.height * 1.5;
+    const holeMax = H * (slide ? 0.26 : 0.12), bottomMax = H * (slide ? 0.38 : 0.3);
+    let gap = 0, at = 0;
+    for (let i = 1; i < merged.length; i++) { const g = merged[i][0] - merged[i - 1][1]; if (g > gap) { gap = g; at = merged[i - 1][1]; } }
+    if (gap > Math.max(48, holeMax)) issues.push(`${label}: ${Math.round(gap)}px empty hole at ${Math.round(at / H * 100)}% down — fill it with real content or tighten spacing`);
+    const unused = H - lowest;
+    if (unused > bottomMax) issues.push(`${label}: bottom ${Math.round(unused / H * 100)}% is empty — rebalance or add content`);
+  };
   document.querySelectorAll('.page').forEach((pg, i) => {
-    const pr = pg.getBoundingClientRect();
-    let lowest = 0;
-    pg.querySelectorAll('*').forEach(el => {
-      if (el.closest('.pf, .ft, .foot, .glow')) return;
-      const r = el.getBoundingClientRect();
-      if (!r.height || !r.width || r.height > pr.height * 0.9) return; // full-height columns/panels are layout, not content
-      // Skip decoration that is positioned out of flow; clip to any overflow:hidden ancestor.
-      let bottom = r.bottom;
-      for (let a = el; a && a !== pg; a = a.parentElement) {
-        const cs = getComputedStyle(a);
-        if (cs.position === 'absolute' || cs.position === 'fixed') return;
-        if (a !== el && cs.overflow !== 'visible') bottom = Math.min(bottom, a.getBoundingClientRect().bottom);
-      }
-      lowest = Math.max(lowest, bottom - pr.top);
-    });
-    const fill = lowest / pr.height;
-    if (lowest > pr.height - 2) issues.push(`page ${i + 1}: content overflows the page bottom`);
-    else if (fill < 0.62 && !pg.classList.contains('allow-space') && getComputedStyle(pg).justifyContent !== 'center') issues.push(`page ${i + 1}: only ${Math.round(fill * 100)}% of the height is used — rebalance or add content`);
+    const h = pg.getBoundingClientRect().height;
+    // Fractional heights (e.g. 210mm = 793.7px) make the PDF bleed a 1px strip onto the next page.
+    if (Math.abs(h - Math.round(h)) > 0.01) issues.push(`page ${i + 1}: height is ${h.toFixed(2)}px — use a whole-pixel height (e.g. ${Math.floor(h)}px) to stop a strip bleeding onto the next page`);
+    const panels = pg.querySelectorAll('.panel, [data-qa-region]');
+    if (panels.length) panels.forEach((pn, j) => check(pn, `page ${i + 1} panel ${j + 1}`));
+    else check(pg, `page ${i + 1}`);
   });
   return { pages: document.querySelectorAll('.page').length, issues };
 });
@@ -78,8 +107,9 @@ for (let i = 0; i < els.length; i++) {
 }
 
 // Contact sheet: every page side by side, for a one-glance layout review.
-const cols = box.w > box.h ? 4 : 5;
-const thumbW = 360;
+// Size thumbnails so the sheet is ~1800px wide whatever the page count, keeping short documents legible.
+const cols = Math.min(shots.length, box.w > box.h ? (shots.length <= 2 ? 2 : 4) : 5);
+const thumbW = Math.floor((1800 - 8 * (cols + 1)) / cols);
 const html = `<body style="margin:0;background:#8a8f99;display:grid;grid-template-columns:repeat(${cols},${thumbW}px);gap:8px;padding:8px;width:max-content">${
   shots.map(f => `<img style="width:${thumbW}px;display:block" src="${pathToFileURL(path.resolve(f)).href}">`).join('')}</body>`;
 const sheetHtml = path.join(previews, '_sheet.html');

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="brand.css">
 <style>
   @page { size: 210mm 297mm; margin: 0; }
-  .page { width: 210mm; height: 297mm; padding: 40px 44px 54px; display: flex; flex-direction: column; }
+  .page { width: 210mm; height: 1122px; /* whole px: 297mm = 1122.5px would bleed onto the next page */ padding: 40px 44px 54px; display: flex; flex-direction: column; }
   .pf { position: absolute; left: 44px; right: 44px; bottom: 22px; display: flex; justify-content: space-between; font-size: 7.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
   .pf b { color: var(--brand); font-weight: 800; }
   .on-dark .pf { border-color: rgba(255,255,255,.12); color: #8d97ba; }
@@ -53,9 +53,9 @@
   .tool { padding: 12px; text-align: left; }
   .tool h4 { font-size: 10.5px; margin: 7px 0 3px; } .tool p { font-size: 8.2px; line-height: 1.4; }
 
-  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 30px; margin-top: 10px; }
+  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 32px; margin-top: 14px; }
   .roomy .feat { padding: 18px 18px; } .roomy .feat h4 { font-size: 13px; } .roomy .feat p { font-size: 9.8px; } .roomy .tool { padding: 16px 14px; } .roomy .tool h4 { font-size: 11.5px; } .roomy .tool p { font-size: 9px; } .roomy h4.sec { margin-top: 30px !important; }
-  .faq h4 { font-size: 13px; margin-bottom: 6px; } .faq p { font-size: 10.4px; line-height: 1.6; }
+  .faq h4 { font-size: 13.5px; margin-bottom: 7px; } .faq p { font-size: 11px; line-height: 1.6; }
 
   .tier { padding: 12px; } .tier h4 { font-size: 12px; } .tier p { font-size: 8.4px; margin-top: 4px; }
   .roles td, .roles th { font-size: 8.6px; padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
@@ -311,6 +311,10 @@
     <div class="card feat"><span class="ic"><i data-i="wallet"></i></span><h4>Billing &amp; wallet</h4><p>Plans, receipts and a wallet for faster payments.</p></div>
     <div class="card feat"><span class="ic"><i data-i="lock"></i></span><h4>Privacy Centre</h4><p>Profile privacy toggles; deactivate or delete any time.</p></div>
   </div>
+  <div class="g2" style="margin-top: 16px;">
+    <div><div class="browser crop"><img src="../assets/img/acc-saved.jpg"></div><p class="cap"><b>Saved</b>Every listing you hearted, in one list.</p></div>
+    <div><div class="browser crop"><img src="../assets/img/acc-settings.jpg"></div><p class="cap"><b>Settings</b>Country, language and timezone in one place.</p></div>
+  </div>
   <div class="card-dark callout" style="margin-top: 16px;"><span class="ic"><i data-i="settings"></i></span><div><h4>Your region, your language</h4><p>Set your country, preferred language and timezone once — they apply everywhere you use FeelyFeely.</p></div></div>
   <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>10</b></div>
 </section>
@@ -421,9 +425,10 @@
     <div><h4>Can I shop from abroad?</h4><p>Yes. FeelyFeely connects verified sellers in Ghana with shoppers at home and in the diaspora — the UK, US and beyond.</p></div>
     <div><h4>How do I control my privacy?</h4><p>Use the Privacy Centre in your account to choose what your profile shows, or to deactivate or delete your account.</p></div>
     <div><h4>Where can I use FeelyFeely?</h4><p>On Android (Google Play), on iPhone by adding it to your Home Screen, and in any browser at feelyfeely.com.</p></div>
+    <div><h4>Can I edit a listing after posting?</h4><p>Yes. Account → Listings shows every listing with its status, price and stats — open one to edit or update it.</p></div>
     <div><h4>Is there a separate site for homes?</h4><p>Yes — FeelyFeely Homes lives at feelyfeely.homes, focused purely on property.</p></div>
   </div>
-  <div class="card-tint callout" style="margin-top: auto;"><span class="ic" style="background:#fff;"><i data-i="video"></i></span><div><h4>Prefer to watch?</h4><p>Short how-to videos walk through your account and posting items, phones, vehicles, homes and places. Follow @feelyfeelygh.</p></div></div>
+  <div class="card-tint callout" style="margin-top: 34px;"><span class="ic" style="background:#fff;"><i data-i="video"></i></span><div><h4>Prefer to watch?</h4><p>Short how-to videos walk through your account and posting items, phones, vehicles, homes and places. Follow @feelyfeelygh.</p></div></div>
   <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>14</b></div>
 </section>
 

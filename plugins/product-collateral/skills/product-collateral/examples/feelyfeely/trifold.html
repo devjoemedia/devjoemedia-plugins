@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="brand.css">
 <style>
   @page { size: 297mm 210mm; margin: 0; }
-  .page { width: 297mm; height: 210mm; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .page { width: 297mm; height: 793px; /* whole px: 210mm = 793.7px would bleed a strip onto the next page */ display: grid; grid-template-columns: repeat(3, 1fr); }
   .panel { position: relative; padding: 30px 28px 26px; display: flex; flex-direction: column; overflow: hidden; }
   .panel + .panel { border-left: 1px dashed #d8dce6; }
   .on-dark + .panel, .panel.on-dark, .panel.grad { border-left: none; }
@@ -70,16 +70,16 @@
   .mod p { font-size: 8.8px; margin-top: 4px; line-height: 1.4; }
   .mod.card-grad { padding: 12px 13px; } .mod.card-grad h4 { font-size: 13.5px; }
 
-  .cta { padding: 16px 18px; margin: 10px 0 8px; }
+  .cta { padding: 20px 20px; margin: 12px 0 10px; }
   .cta .eyebrow { color: #a5b8ff; }
-  .cta .big { font-size: 15px; font-weight: 800; color: #fff; margin: 8px 0 2px; letter-spacing: -.01em; }
+  .cta .big { font-size: 18px; font-weight: 800; color: #fff; margin: 8px 0 2px; letter-spacing: -.01em; }
   .cta .sub { font-size: 9px; color: #9aa6cc; border-top: 1px solid rgba(255,255,255,.12); margin-top: 10px; padding-top: 8px; text-align: center; }
-  .store { display: flex; gap: 10px; align-items: center; padding: 8px 12px; margin-bottom: 6px; }
+  .store { display: flex; gap: 10px; align-items: center; padding: 11px 13px; margin-bottom: 8px; }
   .store small { display: block; font-size: 6.5px; font-weight: 700; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
   .store b { font-size: 12.5px; }
   .store svg { width: 14px; height: 14px; stroke: var(--brand); fill: none; stroke-width: 2; }
   .qr { display: flex; gap: 12px; align-items: center; padding: 10px 12px; }
-  .qr img { width: 58px; height: 58px; }
+  .qr img { width: 72px; height: 72px; }
   .qr h4 { font-size: 11.5px; color: var(--brand-strong); } .qr p { font-size: 8.5px; }
   .sign { margin-top: auto; border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; }
   .sign .url { color: var(--brand); }
@@ -92,9 +92,9 @@
   <div class="panel on-dark cover">
     <div class="glow a"></div><div class="glow b"></div>
     <div class="phones">
-      <div class="phone" style="left: 30px; top: 34px; transform: rotate(-7deg);"><img src="../assets/img/m-homes.jpg"></div>
-      <div class="phone" style="right: 30px; top: 34px; transform: rotate(7deg);"><img src="../assets/img/m-locals.jpg"></div>
-      <div class="phone" style="left: 50%; margin-left: -70px; width: 140px; z-index: 2;"><img src="../assets/img/m-home.jpg"></div>
+      <div class="phone" style="left: 22px; top: 40px; width: 146px; transform: rotate(-7deg);"><img src="../assets/img/m-homes.jpg"></div>
+      <div class="phone" style="right: 22px; top: 40px; width: 146px; transform: rotate(7deg);"><img src="../assets/img/m-locals.jpg"></div>
+      <div class="phone" style="left: 50%; margin-left: -80px; width: 160px; z-index: 2;"><img src="../assets/img/m-home.jpg"></div>
     </div>
     <div style="position: relative; z-index: 3;">
       <img src="../assets/brand/logo-white.png" style="height: 24px;">

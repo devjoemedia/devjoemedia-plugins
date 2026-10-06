@@ -8,6 +8,8 @@ The sources, in order of preference:
 3. **Existing videos and screen recordings** (demo videos, how-to clips, launch videos): `image-tools.mjs frame` grabs a frame, then `trim` cuts away the video background.
 4. **App store screenshots / existing marketing images** in the repo (`public/screenshots`, `assets/marketing`).
 
+**No live site and no dev server** (e.g. the domain doesn't resolve yet, or you were told not to run the app): use what the repo already ships. Look for marketing images (`public/landing`, `public/screenshots`, `public/og*`, `assets/marketing`), app-store screenshots, Storybook stories and mockups. Phone mockups and illustrations can carry the layout. List "no real UI screenshots — swap in live screens once the site is up" in the gap report. If the repo has nothing usable, ask the user for screenshots before laying out pages, because image slots are much harder to fill afterwards.
+
 Pages behind a login are the usual gap. Never type real passwords or create accounts on a production site to get them. Instead, use recordings (option 3). Or ask the user for screenshots, or for a local dev environment with test credentials.
 
 ## Shot list

@@ -30,7 +30,7 @@ Run every script from inside this directory. They resolve `playwright` from the 
 
 These two can run in parallel. Delegate the fact sweep to a subagent if available, because it reads many files.
 - **Brand**: read `references/brand-extraction.md`, then fill the `:root` tokens in `src/brand.css`. Build the logo variants:
-  `node <skill-dir>/scripts/image-tools.mjs logo <path/to/logo.png> assets/brand`
+  `node <skill-dir>/scripts/image-tools.mjs logo <path/to/logo.svg|png> assets/brand`. Then open `assets/brand/logo-proof.png` to check that both variants read on light and dark.
 - **Facts**: read `references/content-rules.md` and write `fact-sheet.md` with a source for every line. This is what keeps the piece honest: copy comes from here, not from imagination.
 
 ### 4. Capture real screens
@@ -57,9 +57,9 @@ The examples link `brand.css` and `icons.js` from the same folder. Icons are `<i
 ```bash
 node <skill-dir>/scripts/render.mjs src/platform-brochure.html out/<Product>-Platform-Brochure.pdf
 ```
-This writes the PDF, per-page PNGs and `out/preview/<name>/sheet.png`, and prints QA warnings: broken images, an unloaded font, overflowing pages, too much empty space. Then:
+This writes the PDF, per-page PNGs and `out/preview/<pdf-name>/sheet.png`. It also prints QA warnings, checking each page and each trifold `.panel` for: broken images, an unloaded font, fractional page heights, overflow, empty holes and unused bottoms. The checks are heuristics, so a clean run doesn't replace looking. Then:
 1. Look at the contact sheet for rhythm and balance, then open individual pages at full size to read the text. Rendering isn't the finish line; looking is.
-2. Fix every warning and anything that looks off. Common fixes: rebalance a sparse page by adding a real content band; cap a tall screenshot with `height` + `object-fit: cover`; remove a duplicate browser bar; shorten copy that wraps badly.
+2. Fix every warning (or mark an intentional title slide `.allow-space`), and anything else that looks off. Common fixes: rebalance a sparse page by adding a real content band; cap a tall screenshot with `height` + `object-fit: cover`; remove a duplicate browser bar; shorten copy that wraps badly.
 3. Re-render until the sheet looks like a finished, professional piece, comparable to the reference samples.
 
 ### 7. Deliver

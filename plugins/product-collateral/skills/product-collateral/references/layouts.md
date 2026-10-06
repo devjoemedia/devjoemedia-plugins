@@ -15,6 +15,7 @@ one as your starting point rather than writing from scratch: the spacing has alr
 ## Shared rules
 
 - One `<section class="page">` per printed page or slide, with a fixed size in CSS units that matches `@page { size }`. `render.mjs` reads both.
+- **Give `.page` a whole-pixel height**, even when `@page` is in mm. 210mm is 793.7px and 297mm is 1122.5px. A fractional height makes the PDF bleed a 1px coloured strip onto the next page. Use `height: 793px` (A4 landscape), `1122px` (A4 portrait) or `810px` (16:9 deck). `render.mjs` warns if a page height is fractional.
 - Set `@page { margin: 0 }` and keep the margins inside `.page` as padding. That gives a full-bleed background on covers.
 - Every page has an eyebrow (a small uppercase label with a gradient dash), a headline, then one lede sentence. Readers skim in that order, so the headline has to carry the message.
 - Alternate surfaces for rhythm: white paper, an off-white `--panel`, and a gradient or dark `--ink` hero. Two dark pages in a row feels heavy, and an all-white run feels like a document.
@@ -35,7 +36,7 @@ one as your starting point rather than writing from scratch: the spacing has alr
 
 ## Trifold brochure
 
-A4 landscape (`297mm × 210mm`, rendered at 1123×794px), with 2 sides of 3 panels each in `grid-template-columns: repeat(3, 1fr)`.
+A4 landscape (`@page 297mm × 210mm`; `.page` 297mm × **793px**), with 2 sides of 3 panels each in `grid-template-columns: repeat(3, 1fr)`.
 Dashed borders mark the fold lines. Panel padding is ~30px 28px.
 
 **Side A (outside)**
@@ -50,7 +51,7 @@ Dashed borders mark the fold lines. Panel padding is ~30px 28px.
 
 ## Platform brochure
 
-A4 portrait (`210mm × 297mm`, 794×1123px), with page padding of 40px 44px 54px. Plan 12–16 pages:
+A4 portrait (`@page 210mm × 297mm`; `.page` 210mm × **1122px**), with page padding of 40px 44px 54px. Plan 12–16 pages:
 
 1. **Cover** (dark): logo and "Official platform brochure · YEAR", then eyebrow, a two-line headline and an intro paragraph. Below: pillar chips and a 4-stat row. Use only verifiable counts, e.g. "5 listing types" or "3 platforms", never invented totals. Finish with a large browser frame and an overlapping phone frame.
 2. **Overview**: a 3×2 grid of pillar/feature cards, a wide browser screenshot, and two callouts (one dark, one gradient). Add a "works on every device" row if space allows.
@@ -109,4 +110,5 @@ The same system covers formats people often ask for next:
 | `.num` | Gradient step number |
 | `.ticks` | Bulleted list with gradient dots |
 | `.glow` | Absolutely positioned blurred colour blob for dark covers |
-| `.allow-space` (on `.page`) | Silences the "too much empty space" QA warning for intentional title slides |
+| `.panel` / `[data-qa-region]` | Columns that QA checks one by one for holes and overflow (trifold panels use `.panel`) |
+| `.allow-space` (on `.page` or a panel) | Silences the empty-space QA warnings for intentional title or divider slides |
