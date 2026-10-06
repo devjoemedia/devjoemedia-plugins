@@ -53,6 +53,8 @@ Upload `product-collateral.skill` from the latest GitHub release under **Setting
 
 ## Using product-collateral
 
+**Full step-by-step instructions: [GUIDE.md](GUIDE.md).**
+
 Open Claude Code in a product's repo and ask, for example:
 
 - "Make a trifold brochure for this app, clean like a professional print piece"
