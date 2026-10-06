@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FeelyFeely Trifold Brochure</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="brand.css">
+<style>
+  @page { size: 297mm 210mm; margin: 0; }
+  .page { width: 297mm; height: 210mm; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .panel { position: relative; padding: 30px 28px 26px; display: flex; flex-direction: column; overflow: hidden; }
+  .panel + .panel { border-left: 1px dashed #d8dce6; }
+  .on-dark + .panel, .panel.on-dark, .panel.grad { border-left: none; }
+  .grad { background: var(--grad); color: #fff; }
+  .grad h2, .grad h4, .grad b { color: #fff; } .grad p { color: #dfe4ff; } .grad .eyebrow { color: #dfe4ff; } .grad .eyebrow::before { background: #fff; }
+  .grad .ic { background: rgba(255,255,255,.16); color: #fff; }
+  h2 { font-size: 27px; margin: 10px 0 8px; }
+  .lede { font-size: 10px; margin-bottom: 14px; }
+  .row { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 15px; }
+  .row h4 { font-size: 13px; margin-bottom: 3px; }
+  .row p { font-size: 9.6px; line-height: 1.42; }
+
+  /* cover */
+  .cover { justify-content: flex-end; padding-bottom: 0; }
+  .cover .glow.a { width: 260px; height: 260px; background: #3b5bff; top: -60px; right: -90px; }
+  .cover .glow.b { width: 220px; height: 220px; background: #7c3aed; bottom: 120px; left: -110px; opacity: .45; }
+  .cover .phones { position: absolute; top: 52px; left: 0; right: 0; height: 300px; }
+  .cover .phones .phone { position: absolute; width: 132px; }
+  .cover h1 { font-size: 34px; line-height: 1.02; margin: 12px 0 10px; }
+  .cover .lede { color: #b8c2e0; font-size: 10.5px; }
+  .cover .plats { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 18px; }
+  .cover .plats .chip { padding: 5px 9px; }
+  .cover .plats svg { width: 10px; height: 10px; stroke: #a5b8ff; fill: none; stroke-width: 2; }
+  .foot { margin: 0 -28px; padding: 13px 28px; display: flex; justify-content: space-between; background: var(--grad); font-size: 10.5px; font-weight: 700; color: #fff; }
+
+  .steps { padding: 15px 16px; margin-top: 10px; }
+  .steps h4 { font-size: 12.5px; margin-bottom: 10px; }
+  .step { display: flex; gap: 10px; position: relative; padding-bottom: 13px; }
+  .step:not(:last-child)::after { content: ""; position: absolute; left: 10.5px; top: 22px; bottom: 0; width: 1.5px; background: #c7d4ff; }
+  .step small { display: block; font-size: 7.5px; font-weight: 800; letter-spacing: .14em; color: var(--brand); }
+  .step p { font-size: 9.5px; color: var(--text); line-height: 1.35; }
+  .need { margin-top: auto; padding: 13px 16px; }
+  .need h4 { font-size: 11.5px; color: var(--brand-strong); margin-bottom: 8px; }
+  .need li { list-style: none; display: flex; gap: 8px; align-items: center; font-size: 9px; color: var(--text); margin-bottom: 6px; }
+  .need .ic { width: 20px; height: 20px; border-radius: 6px; background: #fff; }
+  .need .ic svg { width: 11px; height: 11px; }
+
+  .pillar .ic { width: 30px; height: 30px; }
+  .note { margin-top: auto; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.12); font-size: 9px; line-height: 1.45; color: #e7eaff; }
+  .note b { color: #fff; }
+  .free { margin-top: 10px; background: #fff; border-radius: 12px; padding: 12px 14px; }
+  .free h4 { color: var(--brand-strong); font-size: 12px; margin-bottom: 8px; }
+  .free .tiles { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
+  .free .tiles div { background: var(--tint); border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 9.5px; font-weight: 800; color: var(--brand-ink); }
+  .free .tiles svg { display: block; margin: 0 auto 3px; width: 13px; height: 13px; stroke: var(--brand); fill: none; stroke-width: 2; }
+  .free p { font-size: 8.5px; margin-top: 7px; color: var(--text-2); }
+
+  /* side 2 */
+  .pay { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 8px; }
+  .paytitle { font-size: 12.5px; margin-top: 6px; }
+  .pay .card { padding: 9px 10px; display: flex; gap: 8px; align-items: center; }
+  .pay h4 { font-size: 11px; } .pay p { font-size: 8px; line-height: 1.3; }
+  .trust { margin-top: auto; padding: 14px 16px; }
+  .trust h4 { font-size: 13px; display: flex; gap: 9px; align-items: center; margin-bottom: 8px; }
+  .trust p { font-size: 9px; margin-bottom: 4px; }
+
+  .mod { padding: 12px 13px; margin-bottom: 9px; }
+  .mod .hd { display: flex; align-items: center; gap: 9px; }
+  .mod h4 { font-size: 12px; flex: 1; }
+  .mod p { font-size: 8.8px; margin-top: 4px; line-height: 1.4; }
+  .mod.card-grad { padding: 12px 13px; } .mod.card-grad h4 { font-size: 13.5px; }
+
+  .cta { padding: 16px 18px; margin: 10px 0 8px; }
+  .cta .eyebrow { color: #a5b8ff; }
+  .cta .big { font-size: 15px; font-weight: 800; color: #fff; margin: 8px 0 2px; letter-spacing: -.01em; }
+  .cta .sub { font-size: 9px; color: #9aa6cc; border-top: 1px solid rgba(255,255,255,.12); margin-top: 10px; padding-top: 8px; text-align: center; }
+  .store { display: flex; gap: 10px; align-items: center; padding: 8px 12px; margin-bottom: 6px; }
+  .store small { display: block; font-size: 6.5px; font-weight: 700; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+  .store b { font-size: 12.5px; }
+  .store svg { width: 14px; height: 14px; stroke: var(--brand); fill: none; stroke-width: 2; }
+  .qr { display: flex; gap: 12px; align-items: center; padding: 10px 12px; }
+  .qr img { width: 58px; height: 58px; }
+  .qr h4 { font-size: 11.5px; color: var(--brand-strong); } .qr p { font-size: 8.5px; }
+  .sign { margin-top: auto; border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; }
+  .sign .url { color: var(--brand); }
+</style>
+</head>
+<body>
+
+<!-- SIDE A: cover · who it's for · the platform -->
+<section class="page">
+  <div class="panel on-dark cover">
+    <div class="glow a"></div><div class="glow b"></div>
+    <div class="phones">
+      <div class="phone" style="left: 30px; top: 34px; transform: rotate(-7deg);"><img src="../assets/img/m-homes.jpg"></div>
+      <div class="phone" style="right: 30px; top: 34px; transform: rotate(7deg);"><img src="../assets/img/m-locals.jpg"></div>
+      <div class="phone" style="left: 50%; margin-left: -70px; width: 140px; z-index: 2;"><img src="../assets/img/m-home.jpg"></div>
+    </div>
+    <div style="position: relative; z-index: 3;">
+      <img src="../assets/brand/logo-white.png" style="height: 24px;">
+      <div style="margin-top: 12px;"><span class="chip"><span class="dot"></span>Ghana's smart digital marketplace</span></div>
+      <h1>Everything Ghana,<br><span class="grad-text">in one place.</span></h1>
+      <p class="lede">Buy, sell, rent and discover near you — products, homes, cars and local places, on one free platform.</p>
+      <span class="btn">Join free</span>
+      <div class="plats">
+        <span class="chip"><i data-i="android"></i>Android</span>
+        <span class="chip"><i data-i="apple"></i>iPhone</span>
+        <span class="chip"><i data-i="globe"></i>Web</span>
+      </div>
+    </div>
+    <div class="foot"><span>feelyfeely.com</span><span>@feelyfeelygh</span></div>
+  </div>
+
+  <div class="panel" style="background: var(--panel);">
+    <div class="eyebrow">Who it's for</div>
+    <h2>Built for the<br>way Ghana trades</h2>
+    <div class="row"><span class="ic"><i data-i="search"></i></span><div><h4>Shoppers &amp; renters</h4><p>Find products, homes, cars and places — search once, compare, save and chat.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="tag"></i></span><div><h4>Individual sellers</h4><p>List an item, phone or car in minutes. Sell, rent — or give it away free.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="home"></i></span><div><h4>Agents &amp; property owners</h4><p>Houses, apartments, land and short-stays, with verified listings.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="store"></i></span><div><h4>Shops, brands &amp; local businesses</h4><p>Storefronts, orders, teams and promotions — or claim your place on the map.</p></div></div>
+
+    <div class="card steps">
+      <h4>How it works</h4>
+      <div class="step"><span class="num">1</span><div><small>STEP 1</small><p>Sign up free with your phone number or email.</p></div></div>
+      <div class="step"><span class="num">2</span><div><small>STEP 2</small><p>Tap <b>Post</b>, pick a type and add photos and a price.</p></div></div>
+      <div class="step"><span class="num">3</span><div><small>STEP 3</small><p>Buyers find you, chat and buy — you stay in control.</p></div></div>
+    </div>
+
+    <div style="margin-top: 14px;">
+      <h4 style="font-size: 11.5px; margin-bottom: 7px;">Five things you can post</h4>
+      <div style="display:flex; flex-wrap: wrap; gap: 5px;">
+        <span class="chip light">Item · sale, rent or free</span><span class="chip light">Phone or tablet</span>
+        <span class="chip light">Vehicle or motorbike</span><span class="chip light">Home, land or property</span>
+        <span class="chip light">Place, business or service</span>
+      </div>
+    </div>
+    <div class="card-tint need">
+      <h4>What you need to start</h4>
+      <ul>
+        <li><span class="ic"><i data-i="phone"></i></span>A phone, tablet or computer</li>
+        <li><span class="ic"><i data-i="user"></i></span>A Ghana phone number or email</li>
+        <li><span class="ic"><i data-i="camera"></i></span>A few good photos of what you're listing</li>
+        <li><span class="ic"><i data-i="badge"></i></span>Ghana Card — optional, for a verified badge</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel grad">
+    <div class="glow" style="width: 300px; height: 300px; background: #8b5cf6; top: -120px; right: -140px; opacity: .5;"></div>
+    <div class="eyebrow">The platform</div>
+    <h2>One app for<br>local life</h2>
+    <p class="lede" style="color:#dfe4ff; margin-bottom: 18px;">Five ways to trade and discover, all under one account.</p>
+    <div class="row pillar"><span class="ic"><i data-i="tag"></i></span><div><h4>Market</h4><p>Electronics, fashion, appliances, kids &amp; babies, home and more.</p></div></div>
+    <div class="row pillar"><span class="ic"><i data-i="home"></i></span><div><h4>Homes</h4><p>Houses, apartments, land and short-stays — to buy or rent across Ghana.</p></div></div>
+    <div class="row pillar"><span class="ic"><i data-i="car"></i></span><div><h4>Cars &amp; vehicles</h4><p>Buy, sell or rent — with VIN check, price check and import-duty tools.</p></div></div>
+    <div class="row pillar"><span class="ic"><i data-i="pin"></i></span><div><h4>Locals</h4><p>Restaurants, salons, hotels, services and things to do, with reviews.</p></div></div>
+    <div class="row pillar"><span class="ic"><i data-i="gift"></i></span><div><h4>Free &amp; giveaways</h4><p>Give things away, or join the line to claim them at no cost.</p></div></div>
+    <div style="margin-top: 4px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,.25);"><img src="../assets/img/web-sections.jpg" style="display:block; width:100%;"></div>
+    <div class="note" style="margin-top: 12px;"><b>Stay in the conversation.</b> Chat with sellers in-app, save listings into collections and get alerts when new matches arrive.</div>
+    <div class="free">
+      <h4>Free to join, free to list</h4>
+      <div class="tiles">
+        <div><i data-i="user"></i>Join</div>
+        <div><i data-i="tag"></i>List</div>
+        <div><i data-i="rocket"></i>Boost</div>
+      </div>
+      <p>No hidden charges. Boost a listing or upgrade your store only when you want more reach.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIDE B: why · grow · next step -->
+<section class="page">
+  <div class="panel">
+    <div class="eyebrow">Why FeelyFeely</div>
+    <h2>Trade with<br>confidence</h2>
+    <div class="row"><span class="ic"><i data-i="badge"></i></span><div><h4 style="font-size:11.5px">Verified sellers.</h4><p>ID verification with Ghana Card and identity &amp; professional badges.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="shield"></i></span><div><h4 style="font-size:11.5px">Scam-aware chat.</h4><p>Report tools and safety notices — deposit-for-hold scams are blocked.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="search"></i></span><div><h4 style="font-size:11.5px">One search for everything.</h4><p>Filter by category, price and location — or browse results on a map.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="bell"></i></span><div><h4 style="font-size:11.5px">Never miss a deal.</h4><p>Saved searches alert you the moment a new match is listed.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="star"></i></span><div><h4 style="font-size:11.5px">Real reviews.</h4><p>Ratings and replies on places and sellers help you choose well.</p></div></div>
+    <div class="row"><span class="ic"><i data-i="truck"></i></span><div><h4 style="font-size:11.5px">Delivery or pickup.</h4><p>Sellers choose delivery options; same-day in Accra and Tema.</p></div></div>
+    <h4 class="paytitle">Pay the way Ghana pays</h4>
+    <div class="pay">
+      <div class="card"><span class="ic"><i data-i="phone"></i></span><div><h4>MoMo</h4><p>MTN, Telecel &amp; more</p></div></div>
+      <div class="card"><span class="ic"><i data-i="card"></i></span><div><h4>Cards</h4><p>Visa &amp; Mastercard</p></div></div>
+      <div class="card"><span class="ic"><i data-i="building"></i></span><div><h4>Bank</h4><p>Bank transfer</p></div></div>
+      <div class="card"><span class="ic"><i data-i="wallet"></i></span><div><h4>On delivery</h4><p>Pay on delivery or pickup</p></div></div>
+    </div>
+    <div class="card-dark trust">
+      <h4><span class="ic"><i data-i="lock"></i></span>Secure by design</h4>
+      <p>Card and MoMo payments are processed securely by Paystack.</p>
+      <p>A security check on every sign-in; sign in with a one-time code.</p>
+      <p>Privacy Centre: control your profile, or deactivate any time.</p>
+    </div>
+  </div>
+
+  <div class="panel" style="background: var(--panel);">
+    <div class="eyebrow">For business</div>
+    <h2>More than a<br>marketplace</h2>
+    <p class="lede">Tools that grow with you — from one listing to a multi-branch store.</p>
+    <div class="card-grad mod">
+      <div class="hd"><span class="ic"><i data-i="store"></i></span><h4>Your own storefront</h4></div>
+      <p>Run inventory, orders, fulfilment, payouts and vouchers from the Store Manager.</p>
+    </div>
+    <div class="card mod"><div class="hd"><span class="ic"><i data-i="megaphone"></i></span><h4>Promotions &amp; ads</h4><span class="badge blue">Boost</span></div><p>Campaigns, budgets and boosts — with performance analytics.</p></div>
+    <div class="card mod"><div class="hd"><span class="ic"><i data-i="pin"></i></span><h4>Claim your place</h4><span class="badge green">Free</span></div><p>Already on the map? Claim your restaurant, salon or shop and manage it.</p></div>
+    <div class="card mod"><div class="hd"><span class="ic"><i data-i="users"></i></span><h4>Teams &amp; roles</h4></div><p>Owner, Admin, Manager and Viewer — each person sees only what they should.</p></div>
+    <div class="card mod"><div class="hd"><span class="ic"><i data-i="ticket"></i></span><h4>Vouchers</h4></div><p>Percentage off, fixed discounts and gift cards for your customers.</p></div>
+    <div class="card mod"><div class="hd"><span class="ic"><i data-i="badge"></i></span><h4>Verified listings</h4><span class="badge">Trust</span></div><p>Upload supporting documents to earn a verified badge on property listings.</p></div>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">Next step</div>
+    <h2>Join FeelyFeely<br>today</h2>
+    <p class="lede">Create a free account in under a minute, then post your first listing — or start exploring what's near you.</p>
+    <div class="card-tint" style="padding: 12px 14px; display: flex; gap: 11px; align-items: flex-start;">
+      <span class="ic" style="background:#fff;"><i data-i="sparkles"></i></span>
+      <div><h4 style="font-size: 12.5px; margin-bottom: 3px;">Listing in minutes</h4><p style="font-size: 9px;">Search our catalogue and FeelyFeely fills the details in — then generate a description in one tap.</p></div>
+    </div>
+    <div class="card-dark cta">
+      <div class="eyebrow">Get started</div>
+      <div class="big">feelyfeely.com</div>
+      <div class="big" style="font-size: 12.5px; font-weight: 700; color: #c9d3ff;">support@feelyfeely.com</div>
+      <div class="big" style="font-size: 12.5px; font-weight: 700; color: #c9d3ff;">@feelyfeelygh</div>
+      <div class="sub">Free to join · Free to list · Works on iOS &amp; Android</div>
+    </div>
+    <div class="card store"><svg viewBox="0 0 24 24"><path d="M5 10h14v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M7 10a5 5 0 0 1 10 0"/></svg><div><small>Get it on</small><b>Google Play</b></div></div>
+    <div class="card store"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></svg><div><small>On iPhone</small><b>Add to Home Screen</b></div></div>
+    <div class="card qr"><img src="../assets/img/qr-site.svg"><div><h4>Scan to open FeelyFeely</h4><p>Or visit feelyfeely.com in any browser.</p></div></div>
+    <div class="card" style="padding: 10px 12px; margin-top: 6px; display:flex; gap: 11px; align-items:center;"><span class="ic"><i data-i="video"></i></span><div><h4 style="font-size: 11.5px;">Watch the how-to guides</h4><p style="font-size: 8.5px;">Follow @feelyfeelygh for short videos on posting items, phones, cars, homes and places.</p></div></div>
+    <div class="sign"><img src="../assets/brand/logo-color.png" style="height: 17px;"><span class="url">feelyfeely.com</span></div>
+  </div>
+</section>
+
+<script src="icons.js"></script>
+</body>
+</html>

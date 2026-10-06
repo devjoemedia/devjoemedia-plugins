@@ -1,0 +1,102 @@
+/* FeelyFeely values (from ff-ui: Inter, gray scale, blue-600, logo gradient). Print design system. Only the :root block should change per brand — fill it from the
+   product's own theme (tailwind config, CSS variables, logo colours). See references/brand-extraction.md. */
+
+:root {
+  --font: "Inter";             /* product's UI font; load it from Google Fonts in each HTML <head> */
+  --ink: #0d1530;              /* darkest brand surface: covers, dark cards (a near-black tinted with the brand hue) */
+  --brand-ink: #1e2a5e;        /* wordmark / heading accent colour on light paper */
+  --brand: #2563eb;            /* primary action colour (buttons, links, eyebrows, icons) */
+  --brand-strong: #1d4ed8;     /* one step darker than --brand, for text on tints */
+  --accent: #6d28d9;           /* second brand colour; the end stop of the gradient */
+  --grad: linear-gradient(135deg, #1d3fd8 0%, #4f2bd6 55%, #6d28d9 100%); /* hero panels, numbered dots */
+  --grad-soft: linear-gradient(135deg, #eef3ff 0%, #f3efff 100%);         /* screenshot stages */
+  --on-dark-accent: #8b9dff;   /* highlighted words on dark covers: a light tint of --brand */
+  --tint: #eff4ff;             /* very light brand tint: icon chips, soft cards */
+  --tint-2: #e0e9ff;
+  --paper: #ffffff;
+  --panel: #f6f7fb;            /* neutral off-white panel */
+  --line: #e5e7eb;
+  --text: #111827;
+  --text-2: #4b5563;
+  --muted: #6b7280;
+  --green: #059669;
+  --amber: #f59e0b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #fff; color: var(--text); font-family: var(--font), system-ui, sans-serif;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; font-feature-settings: "cv11", "ss01"; }
+
+.page { position: relative; overflow: hidden; break-after: page; background: var(--paper); }
+.page:last-child { break-after: auto; }
+
+/* Type */
+.eyebrow { display: flex; align-items: center; gap: 8px; font-size: 9px; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--brand); }
+.eyebrow::before { content: ""; width: 18px; height: 3px; border-radius: 2px; background: var(--grad); }
+.on-dark .eyebrow { color: #a5b8ff; }
+h1, h2, h3, h4 { letter-spacing: -0.025em; line-height: 1.05; font-weight: 800; color: var(--text); }
+.on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4 { color: #fff; }
+/* Solid colour, not background-clip:text — clipped gradients leave hairline boxes in some PDF viewers. */
+.grad-text { color: var(--on-dark-accent); }
+.grad-text-dark { color: var(--brand); }
+p { color: var(--text-2); line-height: 1.5; }
+.on-dark p { color: #b8c2e0; }
+b, strong { color: var(--text); font-weight: 700; }
+.on-dark b, .on-dark strong { color: #fff; }
+
+/* Surfaces */
+.on-dark { background: var(--ink); color: #fff; }
+.glow { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+.card-tint { background: var(--tint); border-radius: 14px; }
+.card-dark { background: var(--ink); color: #fff; border-radius: 14px; }
+.card-grad { background: var(--grad); color: #fff; border-radius: 14px; }
+.card-grad p, .card-dark p { color: #d6dcf5; }
+.card-grad h3, .card-grad h4, .card-dark h3, .card-dark h4, .card-grad b, .card-dark b { color: #fff; }
+
+/* Icons */
+.ic { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px;
+  border-radius: 8px; background: var(--tint); color: var(--brand); }
+.ic svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.on-dark .ic, .card-grad .ic, .card-dark .ic { background: rgba(255,255,255,.12); color: #fff; }
+.ic.solid { background: var(--grad); color: #fff; }
+
+/* Chips & badges */
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 8.5px;
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.18); color: #fff; background: rgba(255,255,255,.06); }
+.chip.light { border-color: var(--line); color: var(--brand-ink); background: #fff; letter-spacing: .02em; text-transform: none; font-size: 8.5px; font-weight: 600; }
+.chip .dot { width: 6px; height: 6px; border-radius: 50%; background: #7c9cff; }
+.badge { display: inline-block; padding: 2px 7px; border-radius: 999px; font-size: 7px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; background: var(--ink); color: #fff; }
+.badge.blue { background: var(--brand); }
+.badge.green { background: var(--green); }
+.badge.soft { background: var(--tint-2); color: var(--brand-strong); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 22px; border-radius: 999px;
+  background: var(--brand); color: #fff; font-weight: 800; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.btn.white { background: #fff; color: var(--brand-ink); }
+
+/* Screenshot frames */
+.shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 10px 30px -12px rgba(13,21,48,.35); }
+.shot img { display: block; width: 100%; height: auto; }
+.browser { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 16px 40px -16px rgba(13,21,48,.45); }
+.browser .bar { height: 18px; display: flex; align-items: center; gap: 4px; padding: 0 8px; background: #f3f4f6; border-bottom: 1px solid var(--line); }
+.browser .bar i { width: 6px; height: 6px; border-radius: 50%; background: #d1d5db; }
+.browser .bar span { margin-left: 8px; font-size: 6.5px; color: var(--muted); background: #fff; border-radius: 4px; padding: 2px 10px; }
+.browser img { display: block; width: 100%; }
+.phone { position: relative; border-radius: 26px; background: #0b0f1a; padding: 6px; box-shadow: 0 20px 40px -14px rgba(13,21,48,.55); }
+.phone img { display: block; width: 100%; border-radius: 21px; }
+.phone::after { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 30%; height: 9px; border-radius: 9px; background: #0b0f1a; }
+
+/* Logo */
+.logo { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; letter-spacing: -0.02em; color: var(--brand-ink); }
+.logo img { height: 1.25em; }
+.on-dark .logo, .card-dark .logo, .card-grad .logo { color: #fff; }
+
+/* Steps */
+.num { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--grad); color: #fff; font-size: 10px; font-weight: 800; }
+
+.ticks li { list-style: none; position: relative; padding-left: 16px; color: var(--text-2); line-height: 1.45; }
+.ticks li::before { content: ""; position: absolute; left: 0; top: .5em; width: 7px; height: 7px; border-radius: 50%; background: var(--grad); }
+.on-dark .ticks li, .card-dark .ticks li, .card-grad .ticks li { color: #c9d1ee; }

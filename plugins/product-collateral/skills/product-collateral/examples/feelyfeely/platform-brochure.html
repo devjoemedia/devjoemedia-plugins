@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FeelyFeely Platform Brochure</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="brand.css">
+<style>
+  @page { size: 210mm 297mm; margin: 0; }
+  .page { width: 210mm; height: 297mm; padding: 40px 44px 54px; display: flex; flex-direction: column; }
+  .pf { position: absolute; left: 44px; right: 44px; bottom: 22px; display: flex; justify-content: space-between; font-size: 7.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+  .pf b { color: var(--brand); font-weight: 800; }
+  .on-dark .pf { border-color: rgba(255,255,255,.12); color: #8d97ba; }
+  h2 { font-size: 25px; margin: 10px 0 8px; }
+  .lede { font-size: 10.5px; max-width: 560px; margin-bottom: 18px; }
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+  .feat { padding: 13px 14px; }
+  .feat .ic { margin-bottom: 9px; }
+  .feat h4 { font-size: 11.5px; margin-bottom: 4px; }
+  .feat p { font-size: 8.8px; line-height: 1.45; }
+  .cap { font-size: 8.5px; color: var(--muted); margin-top: 7px; line-height: 1.4; }
+  .cap b { font-size: 9px; display: block; margin-bottom: 1px; }
+  .callout { padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .callout h4 { font-size: 12px; margin-bottom: 3px; }
+  .callout p { font-size: 9px; }
+  .ticks li { font-size: 9px; margin-bottom: 5px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tabs span { font-size: 8px; font-weight: 600; padding: 4px 9px; border-radius: 999px; background: var(--tint); color: var(--brand-strong); }
+  .card-dark .tabs span, .on-dark .tabs span { background: rgba(255,255,255,.1); color: #dbe2ff; }
+  .split { display: grid; grid-template-columns: 1.45fr 1fr; gap: 18px; align-items: start; }
+
+  /* cover */
+  .cover { padding: 44px 46px 54px; }
+  .cover .glow.a { width: 420px; height: 420px; background: #3150ff; top: -160px; right: -160px; }
+  .cover .glow.b { width: 360px; height: 360px; background: #7c3aed; bottom: 80px; left: -200px; opacity: .4; }
+  .cover h1 { font-size: 40px; line-height: 1.02; margin: 18px 0 14px; }
+  .cover .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 22px 0 0; }
+  .cover .stats div { border-top: 1px solid rgba(255,255,255,.16); padding-top: 9px; }
+  .cover .stats b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: #fff; }
+  .cover .stats span { font-size: 8.5px; color: #9aa6cc; }
+  .cover .hero { position: relative; margin-top: 60px; height: 400px; }
+
+  /* steps */
+  .steplist .s { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+  .steplist .s:last-child { border-bottom: none; }
+  .steplist .n { font-size: 11px; font-weight: 800; color: var(--brand); }
+  .steplist h4 { font-size: 12.5px; margin-bottom: 3px; }
+  .steplist p { font-size: 9.2px; }
+
+  .browser.crop img { height: 140px; object-fit: cover; object-position: top; }
+  .tool { padding: 12px; text-align: left; }
+  .tool h4 { font-size: 10.5px; margin: 7px 0 3px; } .tool p { font-size: 8.2px; line-height: 1.4; }
+
+  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 30px; margin-top: 10px; }
+  .roomy .feat { padding: 18px 18px; } .roomy .feat h4 { font-size: 13px; } .roomy .feat p { font-size: 9.8px; } .roomy .tool { padding: 16px 14px; } .roomy .tool h4 { font-size: 11.5px; } .roomy .tool p { font-size: 9px; } .roomy h4.sec { margin-top: 30px !important; }
+  .faq h4 { font-size: 13px; margin-bottom: 6px; } .faq p { font-size: 10.4px; line-height: 1.6; }
+
+  .tier { padding: 12px; } .tier h4 { font-size: 12px; } .tier p { font-size: 8.4px; margin-top: 4px; }
+  .roles td, .roles th { font-size: 8.6px; padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  .roles th { font-size: 7.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .roles td:first-child { font-weight: 700; color: var(--text); white-space: nowrap; }
+  .roles td { color: var(--text-2); }
+</style>
+</head>
+<body>
+
+<!-- 01 COVER -->
+<section class="page on-dark cover">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div style="position: relative; display: flex; justify-content: space-between; align-items: center;">
+    <img src="../assets/brand/logo-white.png" style="height: 26px;">
+    <span style="font-size: 8px; font-weight: 700; letter-spacing: .16em; color: #a5b8ff;">OFFICIAL PLATFORM BROCHURE · 2026</span>
+  </div>
+  <div style="position: relative; margin-top: 70px;">
+    <div class="eyebrow">Ghana's smart digital marketplace</div>
+    <h1>Buy, sell, rent and discover.<br><span class="grad-text">Everything Ghana, in one place.</span></h1>
+    <p style="font-size: 11px; max-width: 520px;">FeelyFeely is a local marketplace for Ghana and its diaspora. People list items, phones, vehicles, homes and businesses; others browse, chat, buy, rent — or claim them for free. One account works on Android, iPhone and the web.</p>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px;">
+      <span class="chip"><span class="dot"></span>Market</span><span class="chip"><span class="dot"></span>Homes</span><span class="chip"><span class="dot"></span>Cars</span>
+      <span class="chip"><span class="dot"></span>Locals</span><span class="chip"><span class="dot"></span>Free</span><span class="chip"><span class="dot"></span>Stores</span>
+    </div>
+    <div class="stats">
+      <div><b>5</b><span>Ways to discover</span></div>
+      <div><b>5</b><span>Listing types to post</span></div>
+      <div><b>3</b><span>Platforms — Android, iOS, web</span></div>
+      <div><b>Free</b><span>To join &amp; list, no hidden charges</span></div>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="browser" style="position: absolute; left: 0; right: 70px; top: 40px;"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com</span></div><img src="../assets/img/web-home.jpg"></div>
+    <div class="phone" style="position: absolute; right: 0; top: 0; width: 150px;"><img src="../assets/img/m-home.jpg"></div>
+  </div>
+  <div class="pf"><span>feelyfeely.com · support@feelyfeely.com · @feelyfeelygh</span><span>01</span></div>
+</section>
+
+<!-- 02 OVERVIEW -->
+<section class="page">
+  <div class="eyebrow">Everything in one app</div>
+  <h2>One place for local life</h2>
+  <p class="lede">Most people in Ghana buy and sell across WhatsApp groups, roadside signs, agents and a handful of websites. FeelyFeely brings it together: one search across products, homes, cars and places, one inbox for every conversation, and one free account to list anything.</p>
+  <div class="g3">
+    <div class="card feat"><span class="ic"><i data-i="tag"></i></span><h4>Market</h4><p>Electronics, phones, fashion, appliances, kids &amp; babies, home and more — new or used, for sale or rent.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="home"></i></span><h4>Homes</h4><p>Houses, apartments, land and short-stays across Ghana, with agents, developers and neighbourhood guides.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="car"></i></span><h4>Cars &amp; vehicles</h4><p>Cars, motorbikes and parts — plus price checks, VIN checks and import-duty estimates before you buy.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="pin"></i></span><h4>Locals</h4><p>Restaurants, hotels, salons, services and things to do — with reviews, ratings and directions.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="gift"></i></span><h4>Free &amp; giveaways</h4><p>Give away what you don't need. Claimants join the line and agree to your giveaway policy.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="store"></i></span><h4>Stores &amp; brands</h4><p>A directory of verified stores and brands, each with its own storefront, inventory and orders.</p></div>
+  </div>
+  <div class="browser" style="margin-top: 18px;"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com — Explore by section</span></div><img src="../assets/img/web-sections.jpg"></div>
+  <div class="g2" style="margin-top: 18px;">
+    <div class="card-dark callout"><span class="ic"><i data-i="globe"></i></span><div><h4>Built for Ghana and the diaspora</h4><p>Ghana phone numbers by default, mobile money, Ghana Card verification and same-day delivery in Accra and Tema.</p></div></div>
+    <div class="card-grad callout"><span class="ic"><i data-i="shield"></i></span><div><h4>Built for trust</h4><p>Verified sellers and listings, identity and professional badges, and chat with scam protection built in.</p></div></div>
+  </div>
+  <h4 style="font-size: 13px; margin: 22px 0 10px;">Works on every device</h4>
+  <div class="g3">
+    <div class="card feat"><span class="ic"><i data-i="android"></i></span><h4>Android</h4><p>Get the FeelyFeely app on Google Play — free to install.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="apple"></i></span><h4>iPhone &amp; iPad</h4><p>Open feelyfeely.com in Safari and add it to your Home Screen.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="monitor"></i></span><h4>Any browser</h4><p>The full platform on desktop and laptop at feelyfeely.com.</p></div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>02</b></div>
+</section>
+
+<!-- 03 HOW IT WORKS -->
+<section class="page roomy">
+  <div class="eyebrow">How it works</div>
+  <h2>From first visit to first sale — six steps</h2>
+  <p class="lede">Shoppers can browse without an account. Create one — free — to save, chat and post.</p>
+  <div class="split">
+    <div class="steplist">
+      <div class="s"><span class="n">01</span><div><h4>Create your free account</h4><p>Sign up with a Ghana phone number or email. Sign in with a one-time code or a password — a quick security check keeps bots out.</p></div></div>
+      <div class="s"><span class="n">02</span><div><h4>Search once, across everything</h4><p>"Search a product, a home, a place or anything." Filter by category, price and location, or switch to the map.</p></div></div>
+      <div class="s"><span class="n">03</span><div><h4>Save, collect and get alerts</h4><p>Heart a listing, group favourites into collections you can share, and save a search to hear about new matches.</p></div></div>
+      <div class="s"><span class="n">04</span><div><h4>Chat, call or inquire</h4><p>Every listing has Call, Chat and Inquire. The listing travels with the conversation, so nobody loses context.</p></div></div>
+      <div class="s"><span class="n">05</span><div><h4>Post your own listing</h4><p>Tap <b>Post</b>, pick one of five listing types, add photos and a price. Post for free, or boost for more views.</p></div></div>
+      <div class="s"><span class="n">06</span><div><h4>Get paid your way</h4><p>Mobile money, cards, bank transfer, wallet, or pay on delivery and pickup — whatever fits the deal.</p></div></div>
+    </div>
+    <div>
+      <div class="phone" style="width: 190px; margin: 0 auto;"><img src="../assets/img/m-login.jpg"></div>
+      <p class="cap" style="text-align: center;"><b>Sign in or create an account</b>Phone number with +233 by default; email works too.</p>
+      <div class="card-dark callout" style="margin-top: 16px;"><span class="ic"><i data-i="zap"></i></span><div><h4>Free, forever</h4><p>Joining and listing cost nothing. Pay only if you choose to boost a listing or upgrade a store plan.</p></div></div>
+    </div>
+  </div>
+  <h4 class="sec" style="font-size: 13px; margin: 18px 0 10px;">What you need to start</h4>
+  <div class="g4">
+    <div class="card-tint tool"><span class="ic" style="background:#fff"><i data-i="phone"></i></span><h4>A phone or computer</h4><p>Android, iPhone or any web browser.</p></div>
+    <div class="card-tint tool"><span class="ic" style="background:#fff"><i data-i="user"></i></span><h4>A number or email</h4><p>To receive your one-time sign-in code.</p></div>
+    <div class="card-tint tool"><span class="ic" style="background:#fff"><i data-i="camera"></i></span><h4>Good photos</h4><p>Up to 10 per listing, plus a video.</p></div>
+    <div class="card-tint tool"><span class="ic" style="background:#fff"><i data-i="badge"></i></span><h4>Ghana Card</h4><p>Optional — for a verified badge.</p></div>
+  </div>
+  <div class="g2" style="margin-top: 18px;">
+    <div><div class="browser crop"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com/locals</span></div><img src="../assets/img/web-locals.jpg"></div><p class="cap"><b>One search box, every pillar</b>Each section has its own search, tuned to what you're looking for.</p></div>
+    <div><div class="browser crop"><div class="bar"><i></i><i></i><i></i><span>Listing page</span></div><img src="../assets/img/web-pdp.jpg"></div><p class="cap"><b>Call, Chat or Inquire</b>Contact the seller straight from the listing.</p></div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>03</b></div>
+</section>
+
+<!-- 04 MARKET -->
+<section class="page">
+  <div class="eyebrow">Market</div>
+  <h2>Shop the market — or sell online to buyers nearby</h2>
+  <p class="lede">Phones, electronics, vehicles, appliances, fashion, health, kids &amp; babies and home goods — from individual sellers and official stores, side by side.</p>
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com/market</span></div><img src="../assets/img/web-market.jpg"></div>
+  <div class="split" style="margin-top: 18px;">
+    <div>
+      <div class="shot"><img src="../assets/img/web-featured-market.jpg"></div>
+      <p class="cap"><b>Featured in Market</b>Every card shows price, condition, delivery badges and the seller's area.</p>
+      <div class="g2" style="margin-top: 12px;">
+        <div class="card feat"><span class="ic"><i data-i="card"></i></span><h4>Cart &amp; checkout</h4><p>Buy directly when a listing supports orders, or chat to agree terms first.</p></div>
+        <div class="card feat"><span class="ic"><i data-i="percent"></i></span><h4>Offers &amp; negotiation</h4><p>Sellers can accept offers or mark a price negotiable.</p></div>
+        <div class="card feat"><span class="ic"><i data-i="clock"></i></span><h4>Auctions</h4><p>Run timed auctions for high-demand items.</p></div>
+        <div class="card feat"><span class="ic"><i data-i="truck"></i></span><h4>Delivery or pickup</h4><p>Sellers set delivery options and fees per listing.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="phone" style="width: 180px; margin: 0 auto;"><img src="../assets/img/m-pdp.jpg"></div>
+      <p class="cap" style="text-align: center;"><b>Product page</b>Add to cart, call, chat, inquire or WhatsApp — all one tap away.</p>
+    </div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>04</b></div>
+</section>
+
+<!-- 05 HOMES -->
+<section class="page">
+  <div class="eyebrow">Homes</div>
+  <h2>Find your dream home — for rent or for sale</h2>
+  <p class="lede">Explore properties across Ghana: detached and semi-detached houses, apartments, condominiums, rooms, land and development projects — with tours, videos and verified listings.</p>
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com/homes</span></div><img src="../assets/img/web-homes.jpg"></div>
+  <div class="split" style="margin-top: 18px; grid-template-columns: 1fr 1.35fr;">
+    <div>
+      <div class="phone" style="width: 180px; margin: 0 auto;"><img src="../assets/img/m-home-pdp.jpg"></div>
+      <p class="cap" style="text-align: center;"><b>Listing detail</b>Photos, video, virtual tour and "Explore in 3D" on supported homes.</p>
+    </div>
+    <div>
+      <div class="g2">
+        <div class="card feat"><span class="ic"><i data-i="home"></i></span><h4>Buy, rent or short-stay</h4><p>Long lets, sales and vacation homes in one search, priced per day, month or outright.</p></div>
+        <div class="card feat"><span class="ic"><i data-i="badge"></i></span><h4>Verified listings</h4><p>Owners upload supporting documents to earn a verified badge — titled land included.</p></div>
+        <div class="card feat"><span class="ic"><i data-i="users"></i></span><h4>Agents &amp; developers</h4><p>Browse verified real-estate agents and property developers.</p></div>
+        <div class="card feat"><span class="ic"><i data-i="compass"></i></span><h4>Neighbourhoods</h4><p>See places, schools and care near homes in each area.</p></div>
+      </div>
+      <div class="card-tint callout" style="margin-top: 12px;"><span class="ic" style="background:#fff;"><i data-i="calc"></i></span><div><h4>Property Insights</h4><p>Estimators help buyers and owners understand value before they commit.</p></div></div>
+    </div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>05</b></div>
+</section>
+
+<!-- 06 CARS -->
+<section class="page">
+  <div class="eyebrow">Cars &amp; vehicles</div>
+  <h2>Check before you buy</h2>
+  <p class="lede">Used cars, SUVs, pickups, vans, buses, motorbikes and scooters — for sale or rent — plus a vehicle toolbox that answers the questions every buyer asks.</p>
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com/cars</span></div><img src="../assets/img/web-cars.jpg"></div>
+  <h4 style="font-size: 13px; margin: 20px 0 10px;">The vehicle toolbox</h4>
+  <div class="g4">
+    <div class="card tool"><span class="ic"><i data-i="tag"></i></span><h4>Price check</h4><p>See what a car is really worth.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="search"></i></span><h4>VIN check</h4><p>Free VIN decode for any vehicle.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="file"></i></span><h4>Car history</h4><p>Full history reports before you pay.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="globe"></i></span><h4>Import duty</h4><p>Estimate Ghana import duty on a car.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="wallet"></i></span><h4>Cost of ownership</h4><p>Fuel, insurance and upkeep over time.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="calc"></i></span><h4>Finance calculator</h4><p>Work out a monthly payment.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="settings"></i></span><h4>Find garages</h4><p>Trusted mechanics near you.</p></div>
+    <div class="card-grad tool"><span class="ic"><i data-i="car"></i></span><h4>Sell your car</h4><p>List in minutes with photos, specs and pricing.</p></div>
+  </div>
+  <div class="g2" style="margin-top: 18px; align-items: center;">
+    <div class="shot"><img src="../assets/img/web-pdp.jpg" style="height: 170px; object-fit: cover; object-position: top;"></div>
+    <div>
+      <h4 style="font-size: 12px; margin-bottom: 6px;">Rent or buy, priced your way</h4>
+      <ul class="ticks"><li>Per-day, per-week and per-month rental pricing on one listing</li><li>Location map, gallery and full spec sheet</li><li>Call, chat or inquire straight from the listing</li><li>Some history reports are paid; VIN decode is free</li></ul>
+    </div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>06</b></div>
+</section>
+
+<!-- 07 LOCALS -->
+<section class="page">
+  <div class="eyebrow">Locals</div>
+  <h2>Know your neighbourhood</h2>
+  <p class="lede">Restaurants, cafés, bars, hotels, salons, healthcare, parks and tourist attractions — plus services like mechanics, plumbing, movers, tutoring, tailoring and pet care.</p>
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com/locals</span></div><img src="../assets/img/web-place.jpg"></div>
+  <div class="split" style="margin-top: 18px; grid-template-columns: 1fr 1fr 1fr;">
+    <div><div class="phone" style="width: 160px; margin: 0 auto;"><img src="../assets/img/m-locals.jpg"></div><p class="cap" style="text-align:center;"><b>Browse by category</b>Bars, beauty salons, cafés, parks and more.</p></div>
+    <div><div class="phone" style="width: 160px; margin: 0 auto;"><img src="../assets/img/m-place.jpg"></div><p class="cap" style="text-align:center;"><b>Place page</b>Rating, about, photos — call, chat, inquire or get directions.</p></div>
+    <div>
+      <div class="card feat" style="margin-bottom: 10px;"><span class="ic"><i data-i="star"></i></span><h4>Reviews &amp; ratings</h4><p>Read honest reviews, and reply as the owner.</p></div>
+      <div class="card-grad feat" style="margin-bottom: 10px;"><span class="ic"><i data-i="pin"></i></span><h4>Own this place?</h4><p>Claim it: submit proof, and once approved you manage the page, photos and replies.</p></div>
+      <div class="card feat"><span class="ic"><i data-i="briefcase"></i></span><h4>List your business</h4><p>Not listed yet? Post a place, business or service in minutes.</p></div>
+    </div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>07</b></div>
+</section>
+
+<!-- 08 FREE + BUZZ -->
+<section class="page">
+  <div class="eyebrow">Free &amp; community</div>
+  <h2>Give it away. Join the buzz.</h2>
+  <p class="lede">Some of the best things on FeelyFeely cost nothing: free furniture, appliances, phones and kids' gear from generous neighbours — and a feed of what's trending across Ghana's social media.</p>
+  <div class="split" style="grid-template-columns: 1fr 1.6fr;">
+    <div><div class="phone" style="width: 180px; margin: 0 auto;"><img src="../assets/img/m-free.jpg"></div></div>
+    <div>
+      <div class="card feat" style="margin-bottom: 10px;"><span class="ic"><i data-i="gift"></i></span><h4>Post a free listing</h4><p>Choose the "For Free" intent, set your pickup policy and publish — no payment involved.</p></div>
+      <div class="card feat" style="margin-bottom: 10px;"><span class="ic"><i data-i="users"></i></span><h4>Fair claiming</h4><p>Claimants join the line in order and accept your giveaway policy before you hand over.</p></div>
+      <div class="card feat"><span class="ic"><i data-i="compass"></i></span><h4>Explore feed</h4><p>An endless feed of listings near you — the easiest way to discover something you didn't know you needed.</p></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top: 20px; padding: 14px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px;"><h4 style="font-size: 13px;">The buzz around town</h4><span style="font-size: 8.5px; color: var(--muted);">YouTube · Instagram · TikTok · Facebook · X — @feelyfeelygh</span></div>
+    <img src="../assets/img/web-buzz.jpg" style="width: 100%; display: block; border-radius: 8px;">
+    <p class="cap">Tips, Shorts, Reels and text posts from buyers and sellers, right on the home page.</p>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>08</b></div>
+</section>
+
+<!-- 09 POSTING -->
+<section class="page">
+  <div class="eyebrow">Posting</div>
+  <h2>List anything in minutes</h2>
+  <p class="lede">Tap Post, choose what you're listing, and a guided wizard does the rest — Details, Media, Delivery, Pricing, Promotion and, for property, Verification.</p>
+  <div class="g2">
+    <div><div class="browser"><div class="bar"><i></i><i></i><i></i><span>Choose your listing type</span></div><img src="../assets/img/wiz-type.jpg"></div><p class="cap"><b>1 · Pick a type</b>Item for sale, rent or free · Phone or tablet · Vehicle or motorbike · Home, land or property · Place, business or service.</p></div>
+    <div><div class="browser"><img src="../assets/img/wiz-catalog.jpg"></div><p class="cap"><b>2 · Search the catalogue</b>Type what you're selling — pick a match and brand, model and details fill in for you.</p></div>
+    <div><div class="browser"><img src="../assets/img/wiz-price.jpg"></div><p class="cap"><b>3 · Price it your way</b>Set a price, allow negotiation, accept offers and choose how buyers can contact you.</p></div>
+    <div><div class="browser"><img src="../assets/img/wiz-publish.jpg"></div><p class="cap"><b>4 · Post free or boost — then publish</b>Skip verification for now and publish, or add documents to earn a verified badge.</p></div>
+  </div>
+  <div class="card-tint" style="margin-top: 18px; padding: 14px 16px;">
+    <h4 style="font-size: 12px; margin-bottom: 9px;">The full flow</h4>
+    <div class="tabs"><span>1 · Tap Post, pick a type</span><span>2 · Search the catalogue</span><span>3 · Add the basics</span><span>4 · Generate the description</span><span>5 · Add photos (up to 10 + a video)</span><span>6 · Choose delivery</span><span>7 · Set your price</span><span>8 · Post for free</span><span>9 · Publish</span></div>
+  </div>
+  <div class="g3" style="margin-top: 12px;">
+    <div class="card feat"><span class="ic"><i data-i="sparkles"></i></span><h4>One-tap descriptions</h4><p>Generate a description from your details, then polish it.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="camera"></i></span><h4>Photos &amp; video</h4><p>Up to 10 photos and a video — drag to reorder them.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="rocket"></i></span><h4>Boost when it matters</h4><p>Promote a listing for more visibility and views — or post free.</p></div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>09</b></div>
+</section>
+
+<!-- 10 ACCOUNT -->
+<section class="page">
+  <div class="eyebrow">Your account</div>
+  <h2>Everything you saved, sold and said — in one place</h2>
+  <p class="lede">Your account is home base: messages, notifications, saved listings, collections, your own listings, orders, billing and settings.</p>
+  <div class="g2">
+    <div><div class="browser"><img src="../assets/img/acc-collections.jpg"></div><p class="cap"><b>Collections</b>Group saved listings — "Apartments", "Sport cars" — and share them publicly.</p></div>
+    <div><div class="browser"><img src="../assets/img/acc-profile.jpg"></div><p class="cap"><b>Profile</b>A completion score nudges you to verify email, phone, address and ID.</p></div>
+  </div>
+  <div class="g3" style="margin-top: 16px;">
+    <div class="card feat"><span class="ic"><i data-i="chat"></i></span><h4>Messages</h4><p>Every conversation, with the listing attached and a Report button.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="bell"></i></span><h4>Notifications</h4><p>In-app and push alerts for chats, orders and saved-search matches.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="grid"></i></span><h4>Manage listings</h4><p>Status, price and stats for everything you've posted.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="badge"></i></span><h4>Badges</h4><p>Apply for Identity and Professional badges once eligible.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="wallet"></i></span><h4>Billing &amp; wallet</h4><p>Plans, receipts and a wallet for faster payments.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="lock"></i></span><h4>Privacy Centre</h4><p>Profile privacy toggles; deactivate or delete any time.</p></div>
+  </div>
+  <div class="card-dark callout" style="margin-top: 16px;"><span class="ic"><i data-i="settings"></i></span><div><h4>Your region, your language</h4><p>Set your country, preferred language and timezone once — they apply everywhere you use FeelyFeely.</p></div></div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>10</b></div>
+</section>
+
+<!-- 11 STORES -->
+<section class="page">
+  <div class="eyebrow">For business · Stores</div>
+  <h2>Your storefront, with a back office built in</h2>
+  <p class="lede">Open a store on FeelyFeely and get a public storefront in the Verified Stores directory — plus a Store Manager to run the business behind it.</p>
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><span>feelyfeely.com/stores</span></div><img src="../assets/img/web-stores.jpg"></div>
+  <div class="card-dark" style="margin-top: 18px; padding: 16px 18px;">
+    <h4 style="font-size: 13px; margin-bottom: 4px;">Store Manager</h4>
+    <p style="font-size: 9px; margin-bottom: 10px;">One dashboard for the whole operation:</p>
+    <div class="tabs"><span>Dashboard</span><span>Messages</span><span>Stores</span><span>Inventory</span><span>Fulfilment</span><span>Orders</span><span>Shipping</span><span>Payments</span><span>Transactions</span><span>Payouts</span><span>Vouchers</span><span>Billing &amp; Plans</span><span>Performance</span><span>Team</span><span>Settings</span></div>
+  </div>
+  <h4 style="font-size: 13px; margin: 18px 0 10px;">Store plans — start free, upgrade as you grow</h4>
+  <div class="g4">
+    <div class="card-tint tier"><span class="badge green">Start here</span><h4 style="margin-top: 8px;">Free</h4><p>Open a store and start selling.</p></div>
+    <div class="card tier"><span class="badge soft">Grow</span><h4 style="margin-top: 8px;">Standard</h4><p>More capacity for growing shops.</p></div>
+    <div class="card tier"><span class="badge blue">Popular</span><h4 style="margin-top: 8px;">Premium</h4><p>For busy, multi-product stores.</p></div>
+    <div class="card-dark tier"><span class="badge" style="background:#fff;color:var(--brand-ink)">Scale</span><h4 style="margin-top: 8px;">Enterprise</h4><p>For brands and multi-branch teams.</p></div>
+  </div>
+  <p class="cap">Billed monthly, quarterly or annually. Current prices and limits are shown in Billing &amp; Plans.</p>
+  <div class="g3" style="margin-top: 12px;">
+    <div class="card feat"><span class="ic"><i data-i="ticket"></i></span><h4>Vouchers</h4><p>Percentage off, fixed discounts (e.g. GHS 15 off) and gift cards.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="users"></i></span><h4>Team</h4><p>Invite staff as Owner, Admin, Manager or Viewer.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="chart"></i></span><h4>Performance</h4><p>Track orders, payouts and what's selling.</p></div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>11</b></div>
+</section>
+
+<!-- 12 PROMOTE & ORGS -->
+<section class="page">
+  <div class="eyebrow">For business · Grow</div>
+  <h2>Get seen by more of the right buyers</h2>
+  <p class="lede">Promoted Highlights put your listings on the FeelyFeely home page and across every pillar. Run campaigns from the Ads Manager with budgets and performance analytics.</p>
+  <div class="shot"><img src="../assets/img/web-promoted.jpg"></div>
+  <p class="cap"><b>Promoted Highlights</b>Dedicated placements across marketplace, homes, locals and more.</p>
+  <h4 style="font-size: 13px; margin: 16px 0 9px;">Promotion options</h4>
+  <div class="tabs"><span>Boost</span><span>Photos</span><span>Video</span><span>Virtual tour</span><span>360°</span><span>Slider</span><span>Banner</span><span>Verification</span><span>Add-ons</span><span>Sponsored placement</span></div>
+  <div class="g3" style="margin-top: 14px;">
+    <div class="card feat"><span class="ic"><i data-i="megaphone"></i></span><h4>Campaigns</h4><p>Group promotions into campaigns for a launch, a sale or a season.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="wallet"></i></span><h4>Budgets</h4><p>Decide what you spend and pay with MoMo, card or wallet.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="chart"></i></span><h4>Performance</h4><p>See views and engagement for every boosted listing.</p></div>
+  </div>
+  <h4 style="font-size: 13px; margin: 20px 0 6px;">Organizations &amp; roles</h4>
+  <p style="font-size: 9.2px; margin-bottom: 8px;">Agencies, dealerships and companies can list under an organization and invite their team. Each person gets exactly the access they need.</p>
+  <table class="roles card" style="width: 100%; border-collapse: collapse; overflow: hidden;">
+    <tr><th>Role</th><th>Best for</th></tr>
+    <tr><td>Owner</td><td>Full control, including billing and transferring ownership</td></tr>
+    <tr><td>Administrator</td><td>Running the organization day to day, members and settings</td></tr>
+    <tr><td>Manager</td><td>Creating and managing listings, giveaways and auctions</td></tr>
+    <tr><td>Viewer</td><td>Read-only access to listings and performance</td></tr>
+    <tr><td style="border-bottom:none">Voucher Manager</td><td style="border-bottom:none">Viewer access plus vouchers</td></tr>
+  </table>
+  <div class="card-dark callout" style="margin-top: 16px;"><span class="ic"><i data-i="building"></i></span><div><h4>Advertise with us</h4><p>Brands and partners can book sponsored placements across FeelyFeely. Start from "Advertise with Us" in the site footer.</p></div></div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>12</b></div>
+</section>
+
+<!-- 13 TRUST & PAYMENTS -->
+<section class="page roomy">
+  <div class="eyebrow">Trust, safety &amp; payments</div>
+  <h2>Trusted commerce should be the default</h2>
+  <p class="lede">Verified sellers, modern payments, reliable delivery and plain-English policies — built for the markets we serve rather than retrofitted from somewhere else.</p>
+  <div class="g2">
+    <div class="card feat"><span class="ic"><i data-i="badge"></i></span><h4>Verified sellers</h4><p>ID verification with a Ghana Card and a selfie. Look for "Verified seller" and "Verified listing" labels.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="shield"></i></span><h4>Scam-aware messaging</h4><p>Safety notices in chat, a Report option on every thread, and deposit-for-hold scams are blocked.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="lock"></i></span><h4>Secure sign-in</h4><p>One-time codes or passwords, protected by a human-verification check.</p></div>
+    <div class="card feat"><span class="ic"><i data-i="file"></i></span><h4>Policies you can read</h4><p>Seller agreement, verification, giveaway, shipping, refunds and privacy — all public.</p></div>
+  </div>
+  <h4 class="sec" style="font-size: 13px; margin: 22px 0 10px;">Pay the way Ghana pays</h4>
+  <div class="g4">
+    <div class="card-grad tool"><span class="ic"><i data-i="phone"></i></span><h4>Mobile money</h4><p>MTN MoMo, Telecel Cash and more.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="card"></i></span><h4>Cards</h4><p>Visa and Mastercard via Paystack.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="building"></i></span><h4>Bank transfer</h4><p>Pay straight from your bank.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="wallet"></i></span><h4>Wallet</h4><p>Top up once, pay faster.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="truck"></i></span><h4>Pay on delivery</h4><p>Pay when it arrives.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="store"></i></span><h4>Pay on pickup</h4><p>Pay when you collect.</p></div>
+    <div class="card tool"><span class="ic"><i data-i="tag"></i></span><h4>Cash</h4><p>Agreed directly with the seller.</p></div>
+    <div class="card-dark tool"><span class="ic"><i data-i="check"></i></span><h4>Your choice</h4><p>Sellers pick what they accept.</p></div>
+  </div>
+  <div class="card-dark callout" style="margin-top: 18px;"><span class="ic"><i data-i="truck"></i></span><div><h4>Real delivery coverage</h4><p>Same-day delivery in Accra and Tema, expanding across Ghana, Nigeria and the diaspora.</p></div></div>
+  <h4 class="sec" style="font-size: 13px; margin: 20px 0 9px;">Policies, in plain English</h4>
+  <div class="tabs"><span>Seller agreement</span><span>Verification policy</span><span>Free &amp; giveaway policy</span><span>Shipping &amp; delivery</span><span>Refunds &amp; returns</span><span>Acceptable use</span><span>Privacy policy</span><span>Cookie policy</span><span>Terms of service</span><span>IP &amp; copyright</span></div>
+  <p class="cap">All published at feelyfeely.com/content.</p>
+  <div class="g2" style="margin-top: 22px;">
+    <div class="card-grad callout"><span class="ic"><i data-i="chat"></i></span><div><h4>Help is one tap away</h4><p>Contact support or give feedback from any page — or email support@feelyfeely.com.</p></div></div>
+    <div class="card-tint callout"><span class="ic" style="background:#fff"><i data-i="globe"></i></span><div><h4>For the diaspora too</h4><p>Shop verified Ghanaian sellers from the UK, US and beyond.</p></div></div>
+  </div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>13</b></div>
+</section>
+
+<!-- 14 FAQ -->
+<section class="page">
+  <div class="eyebrow">FAQ</div>
+  <h2>Questions? We've got answers.</h2>
+  <p class="lede">Can't find what you need? Contact support from any page, or email support@feelyfeely.com.</p>
+  <div class="faq">
+    <div><h4>Is FeelyFeely free?</h4><p>Yes. Joining and posting are free with no hidden charges. You only pay if you choose to boost a listing, buy a promotion or upgrade a store plan.</p></div>
+    <div><h4>What can I list?</h4><p>Five types: an item for sale, rent or free; a phone or tablet; a vehicle or motorbike; a home, land or property; or a place, business or service.</p></div>
+    <div><h4>How do I sign up?</h4><p>With a Ghana phone number (+233) or an email. You can sign in with a one-time code or a password.</p></div>
+    <div><h4>How do I get a verified badge?</h4><p>Verify your identity with a Ghana Card and selfie. For property, upload supporting documents during posting — or later.</p></div>
+    <div><h4>How do buyers contact me?</h4><p>By in-app chat, call or inquiry — you choose which options appear on each listing.</p></div>
+    <div><h4>Which payments are supported?</h4><p>Mobile money, Visa/Mastercard, bank transfer, wallet, and pay on delivery or pickup.</p></div>
+    <div><h4>My business is already on FeelyFeely. How do I take it over?</h4><p>Open the place page and choose "Claim a place". Submit proof; once approved, you manage it.</p></div>
+    <div><h4>Can my team share one account?</h4><p>Create an organization or store and invite people with roles — Owner, Admin, Manager or Viewer.</p></div>
+    <div><h4>How do giveaways work?</h4><p>Post with the "For Free" intent. Claimants join the line and accept your pickup policy.</p></div>
+    <div><h4>Can I shop from abroad?</h4><p>Yes. FeelyFeely connects verified sellers in Ghana with shoppers at home and in the diaspora — the UK, US and beyond.</p></div>
+    <div><h4>How do I control my privacy?</h4><p>Use the Privacy Centre in your account to choose what your profile shows, or to deactivate or delete your account.</p></div>
+    <div><h4>Where can I use FeelyFeely?</h4><p>On Android (Google Play), on iPhone by adding it to your Home Screen, and in any browser at feelyfeely.com.</p></div>
+    <div><h4>Is there a separate site for homes?</h4><p>Yes — FeelyFeely Homes lives at feelyfeely.homes, focused purely on property.</p></div>
+  </div>
+  <div class="card-tint callout" style="margin-top: auto;"><span class="ic" style="background:#fff;"><i data-i="video"></i></span><div><h4>Prefer to watch?</h4><p>Short how-to videos walk through your account and posting items, phones, vehicles, homes and places. Follow @feelyfeelygh.</p></div></div>
+  <div class="pf"><span>FeelyFeely · Official Platform Brochure 2026</span><b>14</b></div>
+</section>
+
+<!-- 15 BACK COVER -->
+<section class="page on-dark cover" style="justify-content: center;">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div style="position: relative; text-align: center;">
+    <img src="../assets/brand/logo-white.png" style="height: 30px;">
+    <h1 style="font-size: 38px; margin-top: 30px;">Ready to buy, sell<br>or discover <span class="grad-text">near you?</span></h1>
+    <p style="font-size: 11px; max-width: 430px; margin: 0 auto;">Create your free account and post your first listing today. It takes minutes — and it costs nothing.</p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 22px;"><span class="btn">Join free at feelyfeely.com</span></div>
+  </div>
+  <div style="position: relative; display: flex; justify-content: center; margin: 40px 0;">
+    <div class="phone" style="width: 170px; transform: rotate(-6deg); margin-right: -20px; margin-top: 30px;"><img src="../assets/img/m-market.jpg"></div>
+    <div class="phone" style="width: 180px; z-index: 2;"><img src="../assets/img/m-home.jpg"></div>
+    <div class="phone" style="width: 170px; transform: rotate(6deg); margin-left: -20px; margin-top: 30px;"><img src="../assets/img/m-cars.jpg"></div>
+  </div>
+  <div style="position: relative; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: center;">
+    <div class="card" style="padding: 12px; display: flex; gap: 10px; align-items: center;"><img src="../assets/img/qr-play.svg" style="width: 54px;"><div><p style="font-size: 7px; font-weight: 700; letter-spacing: .1em; color: var(--muted);">GET IT ON</p><b style="font-size: 12px;">Google Play</b></div></div>
+    <div class="card" style="padding: 12px; display: flex; gap: 10px; align-items: center;"><img src="../assets/img/qr-site.svg" style="width: 54px;"><div><p style="font-size: 7px; font-weight: 700; letter-spacing: .1em; color: var(--muted);">ON THE WEB &amp; IPHONE</p><b style="font-size: 12px;">feelyfeely.com</b></div></div>
+    <div style="font-size: 10px; line-height: 1.7; color: #c9d1ee;"><b>support@feelyfeely.com</b><br>@feelyfeelygh on YouTube, Instagram, TikTok, Facebook &amp; X<br>Homes: feelyfeely.homes</div>
+  </div>
+  <div class="pf"><span>Copyright © 2026 FeelyFeely by Footprintts</span><span>feelyfeely.com</span></div>
+</section>
+
+<script src="icons.js"></script>
+</body>
+</html>
