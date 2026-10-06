@@ -1,13 +1,13 @@
 {
-  "name": "footprintts-plugins",
-  "owner": { "name": "Footprintts" },
-  "metadata": { "description": "Claude Code plugins from the Footprintts / FeelyFeely team." },
+  "name": "devjoemedia-plugins",
+  "owner": { "name": "devjoemedia", "url": "https://github.com/devjoemedia" },
+  "metadata": { "description": "Claude Code plugins by devjoemedia." },
   "plugins": [
     {
       "name": "product-collateral",
       "source": "./plugins/product-collateral",
       "description": "Turn any product codebase into print-ready brochures, trifolds and onboarding decks (PDF) using the product's own brand, copy and real screenshots.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "design"
     }
   ]

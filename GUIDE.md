@@ -16,15 +16,15 @@ Turn any product's codebase into print-ready PDFs: a trifold brochure, a multi-p
 Inside Claude Code:
 
 ```
-/plugin marketplace add devjoemedia/footprintts-plugins
-/plugin install product-collateral@footprintts-plugins
+/plugin marketplace add devjoemedia/devjoemedia-plugins
+/plugin install product-collateral@devjoemedia-plugins
 ```
 
 Or from a terminal:
 
 ```bash
-claude plugin marketplace add devjoemedia/footprintts-plugins
-claude plugin install product-collateral@footprintts-plugins
+claude plugin marketplace add devjoemedia/devjoemedia-plugins
+claude plugin install product-collateral@devjoemedia-plugins
 ```
 
 Start a **new** Claude Code session afterwards so the skill loads. Check it's there with `/plugin`; it should be listed and enabled.
@@ -72,7 +72,7 @@ Then:
 Copy lives in `collateral/src/*.html`, and the brand colours sit at the top of `collateral/src/brand.css`. After editing, re-render. The easiest way is to ask Claude to re-render. Or run it yourself from inside `collateral/`:
 
 ```bash
-SK=$(ls -d ~/.claude/plugins/cache/footprintts-plugins/product-collateral/*/skills/product-collateral | tail -1)
+SK=$(ls -d ~/.claude/plugins/cache/devjoemedia-plugins/product-collateral/*/skills/product-collateral | tail -1)
 node "$SK/scripts/render.mjs" src/trifold.html out/Acme-Trifold-Brochure.pdf
 ```
 
@@ -85,7 +85,7 @@ The PDFs are A4 (trifold: A4 landscape, folds at the dashed lines) with full-ble
 ## 7. Keep it updated
 
 ```bash
-claude plugin marketplace update footprintts-plugins
+claude plugin marketplace update devjoemedia-plugins
 ```
 
 ## Roll it out to a team
@@ -95,15 +95,15 @@ Commit this to a project's `.claude/settings.json`. Teammates are prompted to in
 ```json
 {
   "extraKnownMarketplaces": {
-    "footprintts-plugins": { "source": { "source": "github", "repo": "devjoemedia/footprintts-plugins" } }
+    "devjoemedia-plugins": { "source": { "source": "github", "repo": "devjoemedia/devjoemedia-plugins" } }
   },
-  "enabledPlugins": { "product-collateral@footprintts-plugins": true }
+  "enabledPlugins": { "product-collateral@devjoemedia-plugins": true }
 }
 ```
 
 ## Using claude.ai instead
 
-Download `product-collateral.skill` from the [latest release](https://github.com/devjoemedia/footprintts-plugins/releases/latest) and upload it under **Settings → Capabilities → Skills**. claude.ai has no access to your repo or your network, so attach the logo, screenshots, brand colours and a short product description instead.
+Download `product-collateral.skill` from the [latest release](https://github.com/devjoemedia/devjoemedia-plugins/releases/latest) and upload it under **Settings → Capabilities → Skills**. claude.ai has no access to your repo or your network, so attach the logo, screenshots, brand colours and a short product description instead.
 
 ## Troubleshooting
 

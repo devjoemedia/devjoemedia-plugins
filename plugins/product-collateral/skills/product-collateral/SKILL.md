@@ -89,5 +89,5 @@ Sandboxes may block outbound sites or package downloads. Adapt rather than stop:
 - `scripts/image-tools.mjs`: `crop`, `trim`, `logo` (transparent + on-dark variants), `qr`, `frame` (from video via ffmpeg).
 - `scripts/render.mjs`: PDF, page previews, contact sheet and layout QA.
 - `assets/templates/brand.css`, `icons.js`: the print design system.
-- `examples/feelyfeely/`: a complete worked set (trifold, 15-page brochure, 23-slide deck) for a Ghanaian marketplace, plus that brand's `brand.css` values. `preview/*-sheet.png` shows the rendered result, which is the quality bar to match. Look at it before laying out your own pages.
+- `examples/feelyfeely/`: a finished case study made with this skill for FeelyFeely, a Ghanaian marketplace (trifold, 15-page brochure, 23-slide deck), plus that brand's `brand.css` values. It is a reference for quality and a starting file to rewrite, not a template to keep. `preview/*-sheet.png` shows the rendered result, which is the quality bar to match; look at it before laying out your own pages.
 - `references/`: `layouts.md` (blueprints, type scale, components), `brand-extraction.md`, `content-rules.md`, `capture.md`.

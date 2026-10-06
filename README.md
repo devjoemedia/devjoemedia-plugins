@@ -1,6 +1,6 @@
-# Footprintts plugins
+# devjoemedia plugins
 
-A Claude Code plugin marketplace.
+A Claude Code plugin marketplace by [devjoemedia](https://github.com/devjoemedia).
 
 | Plugin | What it does |
 |---|---|
@@ -11,15 +11,15 @@ A Claude Code plugin marketplace.
 In Claude Code:
 
 ```
-/plugin marketplace add devjoemedia/footprintts-plugins
-/plugin install product-collateral@footprintts-plugins
+/plugin marketplace add devjoemedia/devjoemedia-plugins
+/plugin install product-collateral@devjoemedia-plugins
 ```
 
 Or from a shell:
 
 ```bash
-claude plugin marketplace add devjoemedia/footprintts-plugins
-claude plugin install product-collateral@footprintts-plugins
+claude plugin marketplace add devjoemedia/devjoemedia-plugins
+claude plugin install product-collateral@devjoemedia-plugins
 ```
 
 A full git URL or a local path also works.
@@ -27,7 +27,7 @@ A full git URL or a local path also works.
 **Update** to the latest version:
 
 ```bash
-claude plugin marketplace update footprintts-plugins
+claude plugin marketplace update devjoemedia-plugins
 ```
 
 ### Roll it out to a whole team
@@ -37,12 +37,12 @@ Commit this to a project's `.claude/settings.json`. Everyone who trusts the proj
 ```json
 {
   "extraKnownMarketplaces": {
-    "footprintts-plugins": {
-      "source": { "source": "github", "repo": "devjoemedia/footprintts-plugins" }
+    "devjoemedia-plugins": {
+      "source": { "source": "github", "repo": "devjoemedia/devjoemedia-plugins" }
     }
   },
   "enabledPlugins": {
-    "product-collateral@footprintts-plugins": true
+    "product-collateral@devjoemedia-plugins": true
   }
 }
 ```
@@ -63,6 +63,10 @@ Open Claude Code in a product's repo and ask, for example:
 The skill extracts the brand, writes a sourced fact sheet, captures desktop and mobile screens (one page at a time), and lays out the pages from tested blueprints. It renders to PDF, reviews its own contact sheet, and ends with a list of claims to confirm before printing.
 
 **Requirements:** Node 18+. The setup step installs Playwright (Chromium) and `qrcode` into a local `collateral/` work folder. `ffmpeg` is optional, for grabbing frames from demo videos.
+
+## About the FeelyFeely example
+
+The skill ships with a finished case study, made with it for [FeelyFeely](https://feelyfeely.com): a trifold, a 15-page brochure and a 23-slide deck. The skill uses it as a reference for layout quality, and as a starting file it rewrites completely for your product. It is not a template you pick, and nothing about FeelyFeely ends up in your output. FeelyFeely's name, logo and screenshots belong to FeelyFeely.
 
 ## Contributing
 
