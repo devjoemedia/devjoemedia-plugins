@@ -11,18 +11,18 @@ A Claude Code plugin marketplace.
 In Claude Code:
 
 ```
-/plugin marketplace add <owner>/footprintts-plugins
+/plugin marketplace add devjoemedia/footprintts-plugins
 /plugin install product-collateral@footprintts-plugins
 ```
 
 Or from a shell:
 
 ```bash
-claude plugin marketplace add <owner>/footprintts-plugins
+claude plugin marketplace add devjoemedia/footprintts-plugins
 claude plugin install product-collateral@footprintts-plugins
 ```
 
-Replace `<owner>` with the GitHub org or user that hosts this repo. A full git URL or a local path also works.
+A full git URL or a local path also works.
 
 **Update** to the latest version:
 
@@ -38,7 +38,7 @@ Commit this to a project's `.claude/settings.json`. Everyone who trusts the proj
 {
   "extraKnownMarketplaces": {
     "footprintts-plugins": {
-      "source": { "source": "github", "repo": "<owner>/footprintts-plugins" }
+      "source": { "source": "github", "repo": "devjoemedia/footprintts-plugins" }
     }
   },
   "enabledPlugins": {
