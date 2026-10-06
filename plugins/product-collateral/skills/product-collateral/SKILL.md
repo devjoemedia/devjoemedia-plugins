@@ -68,6 +68,14 @@ This writes the PDF, per-page PNGs and `out/preview/<name>/sheet.png`, and print
 - A short `README.md` in the work directory with the re-render commands, so the team can edit the copy and rebuild.
 - Send the PDFs to the user if a file-sending tool exists. Then reply with a table of what was made (format, pages, sections), how the content and imagery were sourced, and the **gap report** from `references/content-rules.md`. That's everything they must confirm before printing.
 
+## Restricted environments (e.g. claude.ai)
+
+Sandboxes may block outbound sites or package downloads. Adapt rather than stop:
+- **No codebase attached:** ask for the product URL, logo file, brand colours and a few facts, or for an export of the repo's theme/config files. Then build the fact sheet from what was provided and from the user's answers.
+- **Live site unreachable:** ask the user to upload screenshots (desktop and phone) and any demo video. Crop them with `image-tools.mjs`.
+- **`npm i playwright` or the Chromium download fails:** check for a preinstalled Chromium or Playwright (`pip show playwright`, `which chromium`). Python Playwright can run the same page logic. If no headless browser is available at all, deliver the HTML files with print CSS plus instructions to "Print → Save as PDF" in Chrome with margins *None* and *Background graphics* on, and say clearly that you couldn't render or review them yourself.
+- **No Google Fonts access:** fall back to a local font with similar metrics and mention it in the gap report.
+
 ## Why this approach
 
 - **Real screens and real copy** make collateral credible, and they keep a printed claim from being wrong on day one.
